@@ -106,7 +106,20 @@ layout: default
                     </a>
                     {% assign project_posts = site.posts | where_exp: 'post', 'post.categories contains category' %}
                     {% if project_posts.size > 1 %}
-                    <a href="/archive/?category={{ category }}" class="btn btn-secondary">
+                    {% comment %} 카테고리별 아카이브 URL 매핑 {% endcomment %}
+                    {% assign archive_category = '' %}
+                    {% if category == 'Mentbox' %}
+                        {% assign archive_category = 'mentbox' %}
+                    {% elsif category == 'web-app' %}
+                        {% assign archive_category = 'web-app' %}
+                    {% elsif category == 'mobile-app' %}
+                        {% assign archive_category = 'mobile-app' %}
+                    {% elsif category == 'ai-project' %}
+                        {% assign archive_category = 'ai-project' %}
+                    {% else %}
+                        {% assign archive_category = category | slugify %}
+                    {% endif %}
+                    <a href="/archive/?category={{ archive_category }}" class="btn btn-secondary">
                         <i class="fas fa-list"></i>
                         관련 글 {{ project_posts.size }}개
                     </a>
@@ -209,8 +222,27 @@ layout: default
             {% assign current_category = page.categories.first %}
             {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains current_category' %}
             {% if category_posts.size > 1 %}
+            {% comment %} 카테고리별 아카이브 URL 매핑 {% endcomment %}
+            {% assign archive_category = '' %}
+            {% if current_category == 'AppleDeveloperAcademy' %}
+                {% assign archive_category = 'apple-academy' %}
+            {% elsif current_category == '개발' %}
+                {% assign archive_category = 'development' %}
+            {% elsif current_category == '아카데미일상' %}
+                {% assign archive_category = 'academy-daily' %}
+            {% elsif current_category == 'Mentbox' %}
+                {% assign archive_category = 'mentbox' %}
+            {% elsif current_category == 'web-app' %}
+                {% assign archive_category = 'web-app' %}
+            {% elsif current_category == 'mobile-app' %}
+                {% assign archive_category = 'mobile-app' %}
+            {% elsif current_category == 'ai-project' %}
+                {% assign archive_category = 'ai-project' %}
+            {% else %}
+                {% assign archive_category = current_category | slugify %}
+            {% endif %}
             <div class="category-nav-footer">
-                <a href="/archive/{{ current_category | slugify }}/" class="category-all-posts">
+                <a href="/archive/?category={{ archive_category }}" class="category-all-posts">
                     <i class="fas fa-list"></i>
                     '{{ current_category }}' 카테고리 전체 글 보기 ({{ category_posts.size }}개)
                 </a>
