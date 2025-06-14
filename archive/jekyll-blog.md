@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "Jekyll Blog 🌐"
-description: "Jekyll을 활용한 블로그 구축과 커스터마이징 과정을 모아봤습니다"
-permalink: /archive/jekyll-blog/
+title: "AcademyDaily 🌐"
+description: "AcademyDaily 활용한 블로그 구축과 커스터마이징 과정을 모아봤습니다"
+permalink: /archive/AcademyDaily/
 ---
 
 <div class="series-detail-header">
@@ -13,12 +13,12 @@ permalink: /archive/jekyll-blog/
     <div class="series-hero">
         <div class="hero-icon">🌐</div>
         <div class="hero-content">
-            <h1>Jekyll Blog</h1>
+            <h1>AcademyDaily</h1>
             <p class="hero-description">
-                Jekyll을 활용한 정적 사이트 생성, GitHub Pages 배포, 
+                AcademyDaily 활용한 정적 사이트 생성, GitHub Pages 배포, 
                 블로그 커스터마이징 과정을 기록한 시리즈입니다.
             </p>
-            {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "Jekyll-Blog"' %}
+            {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
             <div class="hero-stats">
                 <span class="stat">📝 {{ jekyll_posts.size }}개 포스트</span>
                 {% if jekyll_posts.size > 0 %}
@@ -111,7 +111,7 @@ permalink: /archive/jekyll-blog/
     {% else %}
     <div class="no-posts">
         <div class="no-posts-icon">🌐</div>
-        <h3>Jekyll Blog 포스트를 준비 중입니다</h3>
+        <h3>AcademyDaily 포스트를 준비 중입니다</h3>
         <p>곧 블로그 구축 경험을 공유할 예정이에요!</p>
     </div>
     {% endif %}

@@ -100,7 +100,7 @@ layout: default
             </div>
 
             <div class="featured-projects">
-                <a href="/projects/jekyll-blog/" class="home-project-card-modern featured" data-project="jekyll-blog">
+                <a href="/projects/AcademyDaily/" class="home-project-card-modern featured" data-project="AcademyDaily">
                     <div class="project-image-small">
                         <i class="fas fa-blog project-icon-small"></i>
                     </div>
@@ -119,7 +119,7 @@ layout: default
                         </div>
                         <div class="project-footer-modern">
                             <span class="post-count-modern">{% assign jekyll_posts = site.posts | where_exp: 'post',
-                                'post.categories contains "jekyll-blog"' %}{{ jekyll_posts.size }}개 포스트</span>
+                                'post.categories contains "AcademyDaily"' %}{{ jekyll_posts.size }}개 포스트</span>
                             <div class="project-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
@@ -166,26 +166,15 @@ layout: default
             </div>
 
             <div class="series-showcase">
-                {% assign all_categories = site.posts | map: 'categories' | join: ',' | split: ',' | sort | uniq %}
-                {% for category in all_categories limit: 6 %}
-                {% if category != "" %}
-                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category' %}
-
+                <!-- 1️⃣ Apple Developer Academy 시리즈 -->
+                {% assign category_name = 'AppleDeveloperAcademy' %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_name' %}
+                {% if category_posts.size > 0 %}
                 <div class="series-card">
                     <div class="series-header-showcase">
-                        <div class="series-icon-showcase">
-                            {% if category == 'AppleDeveloperAcademy' %}
-                            🍎
-                            {% elsif category == '개발' %}
-                            💻
-                            {% elsif category == 'jekyll-blog' %}
-                            🌐
-                            {% else %}
-                            📚
-                            {% endif %}
-                        </div>
+                        <div class="series-icon-showcase">🍎</div>
                         <div class="series-info">
-                            <h3 class="series-title">{{ category }}</h3>
+                            <h3 class="series-title-showcase">Apple Academy</h3>
                             <p class="series-count">{{ category_posts.size }}개의 글</p>
                         </div>
                     </div>
@@ -202,7 +191,7 @@ layout: default
                         {% endfor %}
                         {% if category_posts.size > 2 %}
                         <div class="preview-more">
-                            <a href="/archive/?category={{ category_param }}" class="more-link">
+                            <a href="/archive/?category=apple-academy" class="more-link">
                                 +{{ category_posts.size | minus: 2 }}개 더 보기
                             </a>
                         </div>
@@ -210,14 +199,104 @@ layout: default
                     </div>
 
                     <div class="series-footer">
-                        {% assign category_param = category | replace: 'AppleDeveloperAcademy', 'apple-academy' | replace: '개발', 'development' %}
-                        <a href="/archive/?category={{ category_param }}" class="series-view-all">
+                        <a href="/archive/?category=apple-academy" class="series-view-all">
                             전체 보기 <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
                 {% endif %}
-                {% endfor %}
+
+                <!-- 2️⃣ 개발 시리즈 -->
+                {% assign category_name = '개발' %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_name' %}
+                {% if category_posts.size > 0 %}
+                <div class="series-card">
+                    <div class="series-header-showcase">
+                        <div class="series-icon-showcase">💻</div>
+                        <div class="series-info">
+                            <h3 class="series-title-showcase">개발 & 기술</h3>
+                            <p class="series-count">{{ category_posts.size }}개의 글</p>
+                        </div>
+                    </div>
+
+                    <div class="series-preview">
+                        {% for post in category_posts limit: 2 %}
+                        <div class="preview-item">
+                            <a href="{{ post.url | relative_url }}" class="preview-link">
+                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
+                                    replace: ']', '' | truncate: 40 }}</span>
+                                <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% if category_posts.size > 2 %}
+                        <div class="preview-more">
+                            <a href="/archive/?category=development" class="more-link">
+                                +{{ category_posts.size | minus: 2 }}개 더 보기
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="series-footer">
+                        <a href="/archive/?category=development" class="series-view-all">
+                            전체 보기 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- 3️⃣ AcademyDaily 시리즈 -->
+                {% assign category_name = 'AcademyDaily' %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_name' %}
+                {% if category_posts.size > 0 %}
+                <div class="series-card">
+                    <div class="series-header-showcase">
+                        <div class="series-icon-showcase">📝</div>
+                        <div class="series-info">
+                            <h3 class="series-title-showcase">AcademyDaily</h3>
+                            <p class="series-count">{{ category_posts.size }}개의 글</p>
+                        </div>
+                    </div>
+
+                    <div class="series-preview">
+                        {% for post in category_posts limit: 2 %}
+                        <div class="preview-item">
+                            <a href="{{ post.url | relative_url }}" class="preview-link">
+                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
+                                    replace: ']', '' | truncate: 40 }}</span>
+                                <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% if category_posts.size > 2 %}
+                        <div class="preview-more">
+                            <a href="/archive/?category=jekyll-blog" class="more-link">
+                                +{{ category_posts.size | minus: 2 }}개 더 보기
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="series-footer">
+                        <a href="/archive/?category=jekyll-blog" class="series-view-all">
+                            전체 보기 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- 
+                ============================================
+                💡 새로운 시리즈 추가 방법
+                ============================================
+                새로운 시리즈를 추가하고 싶으시면 위의 블록을 복사해서:
+                1. category_name을 새 카테고리명으로 변경
+                2. 아이콘 변경 (🎯, 🚀, 📱, 🎨 등)
+                3. 시리즈 제목 변경
+                4. URL 파라미터 변경 (/archive/?category=새카테고리)
+                ============================================
+                -->
             </div>
         </section>
 
