@@ -170,35 +170,32 @@ layout: default
                 {% for category in all_categories limit: 6 %}
                 {% if category != "" %}
                 {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category' %}
-                {% assign latest_post = category_posts.first %}
-                
+
                 <div class="series-card">
-                    <div class="series-header">
-                        <div class="series-icon">
-                            {% if category == '애플아카데미' %}
-                                🍎
+                    <div class="series-header-showcase">
+                        <div class="series-icon-showcase">
+                            {% if category == 'AppleDeveloperAcademy' %}
+                            🍎
                             {% elsif category == '개발' %}
-                                💻
+                            💻
                             {% elsif category == 'jekyll-blog' %}
-                                🌐
+                            🌐
                             {% else %}
-                                📚
+                            📚
                             {% endif %}
                         </div>
                         <div class="series-info">
                             <h3 class="series-title">{{ category }}</h3>
                             <p class="series-count">{{ category_posts.size }}개의 글</p>
                         </div>
-                        <div class="series-stats">
-                            <span class="last-updated">{{ latest_post.date | date: "%m/%d" }}</span>
-                        </div>
                     </div>
-                    
+
                     <div class="series-preview">
                         {% for post in category_posts limit: 2 %}
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
-                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' | replace: ']', '' | truncate: 40 }}</span>
+                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
+                                    replace: ']', '' | truncate: 40 }}</span>
                                 <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
                             </a>
                         </div>
@@ -211,7 +208,7 @@ layout: default
                         </div>
                         {% endif %}
                     </div>
-                    
+
                     <div class="series-footer">
                         <a href="/archive/#{{ category }}" class="series-view-all">
                             전체 보기 <i class="fas fa-arrow-right"></i>

@@ -31,9 +31,9 @@ permalink: /archive/
   <!-- Archive Content Areas -->
   <div class="archive-content">
     <!-- Professional Categories Only -->
-    {% assign professional_categories = "애플아카데미,개발,jekyll-blog" | split: "," %}
+    {% assign professional_categories = "AppleDeveloperAcademy,개발,jekyll-blog" | split: "," %}
     {% assign professional_posts = site.posts | where_exp: 'post', 'professional_categories contains post.categories[0]' %}
-    {% assign apple_posts = professional_posts | where_exp: 'post', 'post.categories contains "애플아카데미"' %}
+    {% assign apple_posts = professional_posts | where_exp: 'post', 'post.categories contains "AppleDeveloperAcademy"' %}
     {% assign dev_posts = professional_posts | where_exp: 'post', 'post.categories contains "개발"' %}
     {% assign jekyll_posts = professional_posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}
 

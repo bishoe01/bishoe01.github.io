@@ -3369,6 +3369,7 @@ body[class*="contact"] .page-body h3:hover::after {
 
 .series-header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: var(--spacing-md);
     background: var(--bg-secondary);

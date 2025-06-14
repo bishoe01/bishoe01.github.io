@@ -1,7 +1,7 @@
 ---
 title: "🌱 AppleDeveloperAcademy Challenge1 회고"
 date: 2025-03-29
-categories: [애플아카데미]
+categories: [AppleDeveloperAcademy]
 tags: [CBL, Challenge-Based-Learning, 프로토타입, 팀프로젝트, 회고]
 description: "CBL(Challenge-Based Learning) 방식에 처음 적응하며 'Care & Support'를 주제로 한 프로토타입 제작 경험을 회고합니다."
 ---
