@@ -73,7 +73,7 @@ permalink: /archive/
           </div>
           
           <div class="series-footer">
-            <a href="/archive/apple-academy/" class="view-all-btn">
+            <a href="/archive/?category=apple-academy" class="view-all-btn">
               전체 보기 ({{ apple_posts.size }}개) →
             </a>
           </div>
@@ -116,7 +116,7 @@ permalink: /archive/
           </div>
           
           <div class="series-footer">
-            <a href="/archive/development/" class="view-all-btn">
+            <a href="/archive/?category=development" class="view-all-btn">
               전체 보기 ({{ dev_posts.size }}개) →
             </a>
           </div>
@@ -158,7 +158,7 @@ permalink: /archive/
           </div>
           
           <div class="series-footer">
-            <a href="/archive/jekyll-blog/" class="view-all-btn">
+            <a href="/archive/?category=jekyll-blog" class="view-all-btn">
               전체 보기 ({{ jekyll_posts.size }}개) →
             </a>
           </div>
@@ -253,25 +253,51 @@ permalink: /archive/
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.archive-tab-button');
     const tabContents = document.querySelectorAll('.archive-tab-content');
-
+    
+    // URL 파라미터에서 카테고리 읽기
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    
+    // 기본값은 'all'
+    let activeCategory = 'all';
+    
+    // URL 파라미터가 있으면 해당 카테고리로 설정
+    if (categoryParam) {
+        activeCategory = categoryParam;
+    }
+    
+    // 초기 활성화
+    activateTab(activeCategory);
+    
+    // 탭 클릭 이벤트
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
             const category = this.getAttribute('data-category');
+            activateTab(category);
             
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+            // URL 업데이트 (브라우저 히스토리에 추가)
+            const newUrl = category === 'all' ? '/archive/' : `/archive/?category=${category}`;
+            history.pushState(null, '', newUrl);
+        });
+    });
+    
+    function activateTab(category) {
+        // 모든 탭과 컨텐츠에서 active 클래스 제거
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // 해당 탭 버튼 활성화
+        const targetButton = document.querySelector(`.archive-tab-button[data-category="${category}"]`);
+        if (targetButton) {
+            targetButton.classList.add('active');
+        }
+        
+        // 해당 컨텐츠 표시
+        const targetContent = document.querySelector(`.archive-tab-content[data-category="${category}"]`);
+        if (targetContent) {
+            targetContent.classList.add('active');
             
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Show corresponding content
-            const targetContent = document.querySelector(`.archive-tab-content[data-category="${category}"]`);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
-            
-            // Add animation effect
+            // 애니메이션 효과
             const seriesCards = targetContent.querySelectorAll('.series-card, .timeline-post');
             seriesCards.forEach((card, index) => {
                 card.style.opacity = '0';
@@ -282,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.transform = 'translateY(0)';
                 }, index * 100);
             });
-        });
-    });
+        }
+    }
 });
 </script>
