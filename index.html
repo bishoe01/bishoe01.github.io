@@ -56,26 +56,18 @@ layout: default
             </div>
 
             {% if site.posts.size > 0 %}
-            <div class="latest-posts-compact">
+            <div class="latest-posts-modern">
                 {% for post in site.posts limit: 3 %}
-                <article class="latest-post-item">
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                        </h3>
-                        <div class="post-meta">
-                            <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
-                            {% if post.categories.size > 0 %}
-                            <span class="post-category">{{ post.categories.first }}</span>
-                            {% endif %}
-                        </div>
+                <a href="{{ post.url | relative_url }}" class="latest-post-modern">
+                    <div class="post-header-simple">
+                        <h3 class="post-title-modern">{{ post.title }}</h3>
+                        {% if post.categories.size > 0 %}
+                        <span class="category-tag-modern">{{ post.categories.first }}</span>
+
                     </div>
-                    <div class="post-action">
-                        <a href="{{ post.url | relative_url }}" class="read-more-btn">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
+
+                    {% endif %}
+                </a>
                 {% endfor %}
             </div>
             <div class="view-all-posts-cta">
@@ -126,7 +118,8 @@ layout: default
                             <span class="tech-tag-modern">JavaScript</span>
                         </div>
                         <div class="project-footer-modern">
-                            <span class="post-count-modern">{% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}{{ jekyll_posts.size }}개 포스트</span>
+                            <span class="post-count-modern">{% assign jekyll_posts = site.posts | where_exp: 'post',
+                                'post.categories contains "jekyll-blog"' %}{{ jekyll_posts.size }}개 포스트</span>
                             <div class="project-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
@@ -152,7 +145,8 @@ layout: default
                             <span class="tech-tag-modern">MongoDB</span>
                         </div>
                         <div class="project-footer-modern">
-                            <span class="post-count-modern">{% assign webapp_posts = site.posts | where_exp: 'post', 'post.categories contains "web-app"' %}{{ webapp_posts.size }}개 포스트</span>
+                            <span class="post-count-modern">{% assign webapp_posts = site.posts | where_exp: 'post',
+                                'post.categories contains "web-app"' %}{{ webapp_posts.size }}개 포스트</span>
                             <div class="project-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
