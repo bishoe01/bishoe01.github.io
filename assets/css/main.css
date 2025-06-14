@@ -352,8 +352,12 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
     color: var(--text-primary);
 }
+
+
+
 
 .post-title a {
     text-decoration: none;
@@ -613,13 +617,6 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.post-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.2;
-    color: var(--text-primary);
-}
 
 .post-description {
     font-size: 1.125rem;
@@ -1328,7 +1325,7 @@ body {
 .page-body h4,
 .page-body h5,
 .page-body h6 {
-    margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    /* margin: var(--spacing-lg) 0 var(--spacing-md) 0; */
     font-weight: 600;
     line-height: 1.3;
     color: var(--text-primary);
@@ -1341,21 +1338,21 @@ body {
 }
 
 .page-body h2 {
-    font-size: 1.875rem;
-    border-bottom: 1px solid var(--border-color);
+    font-size: 1.5rem;
+    /* border-bottom: 1px solid var(--border-color); */
     padding-bottom: var(--spacing-xs);
 }
 
 .page-body h3 {
-    font-size: 1.5rem;
+    font-size: 1.3;
 }
 
 .page-body h4 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
 }
 
 .page-body p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .page-body ul,
@@ -3371,9 +3368,17 @@ body[class*="contact"] .page-body h3:hover::after {
 }
 
 .series-header {
-    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-md);
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
+}
+.series-header-content{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .series-icon {
@@ -3437,12 +3442,7 @@ body[class*="contact"] .page-body h3:hover::after {
     font-weight: 500;
 }
 
-.post-title {
-    margin: var(--spacing-md) 0 !important;
-    font-size: 1.5rem;
-    line-height: 1.4;
-    font-weight: 500;
-}
+
 
 .post-title a {
     color: var(--text-primary);

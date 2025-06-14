@@ -44,12 +44,13 @@ permalink: /archive/
         {% if apple_posts.size > 0 %}
         <div class="series-card">
           <div class="series-header">
+            <div class="series-header-content">
+            <h2 class="series-title">Apple Academy</h2>
             <div class="series-icon">🍎</div>
-            <div class="series-info">
-              <h2 class="series-title">Apple Academy</h2>
+            </div>
+            <div class="series-info">  
               <p class="series-description">애플 디벨로퍼 아카데미에서의 학습과 프로젝트 경험</p>
               <div class="series-stats">
-                <span class="post-count">{{ apple_posts.size }}개 포스트</span>
                 <span class="date-range">{{ apple_posts.last.date | date: "%Y.%m" }} - {{ apple_posts.first.date | date: "%Y.%m" }}</span>
               </div>
             </div>
@@ -83,12 +84,14 @@ permalink: /archive/
         {% if dev_posts.size > 0 %}
         <div class="series-card">
           <div class="series-header">
+          <div class="series-header-content">
+            <h2 class="series-title">개발 & 기술</h2>
             <div class="series-icon">💻</div>
+        </div>
+            
             <div class="series-info">
-              <h2 class="series-title">개발 & 기술</h2>
               <p class="series-description">프로그래밍 언어, 프레임워크, 개발 도구 학습 기록</p>
               <div class="series-stats">
-                <span class="post-count">{{ dev_posts.size }}개 포스트</span>
                 {% if dev_posts.size > 0 %}
                 <span class="date-range">{{ dev_posts.last.date | date: "%Y.%m" }} - {{ dev_posts.first.date | date: "%Y.%m" }}</span>
                 {% endif %}
@@ -123,13 +126,14 @@ permalink: /archive/
         <!-- Jekyll Blog Series -->
         {% if jekyll_posts.size > 0 %}
         <div class="series-card">
-          <div class="series-header">
+        <div class="series-header">
+        <div class="series-header-content">
+            <h2 class="series-title">Jekyll Blog</h2>
             <div class="series-icon">🌐</div>
+        </div>
             <div class="series-info">
-              <h2 class="series-title">Jekyll Blog</h2>
               <p class="series-description">Jekyll을 활용한 블로그 구축과 커스터마이징 과정</p>
               <div class="series-stats">
-                <span class="post-count">{{ jekyll_posts.size }}개 포스트</span>
                 {% if jekyll_posts.size > 0 %}
                 <span class="date-range">{{ jekyll_posts.last.date | date: "%Y.%m" }} - {{ jekyll_posts.first.date | date: "%Y.%m" }}</span>
                 {% endif %}

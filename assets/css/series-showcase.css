@@ -43,8 +43,7 @@
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
     display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+    flex-direction: column;
 }
 
 .series-icon {
