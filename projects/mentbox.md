@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "Jekyll 블로그 프로젝트"
-description: "Jekyll과 GitHub Pages로 만든 개인 개발 블로그 제작기"
-permalink: /projects/AcademyDaily/
+title: "MentBox - 일상 기록 프로젝트"
+description: "아카데미 및 일상 생활의 기록과 성찰을 담는 프로젝트"
+permalink: /projects/mentbox/
 ---
 
 <div class="project-detail-header">
@@ -11,84 +11,84 @@ permalink: /projects/AcademyDaily/
       <i class="fas fa-blog"></i>
     </div>
     <div class="project-details">
-      <h1>📱 개인 블로그</h1>
-      <p class="project-subtitle">Jekyll과 GitHub Pages로 만든 개발 블로그</p>
+      <h1>📝 MentBox</h1>
+      <p class="project-subtitle">아카데미 일상과 성장의 기록을 담는 공간</p>
       <div class="project-meta">
         <div class="meta-item">
-          <strong>기간:</strong> 2025.06 ~ 현재
+          <strong>기간:</strong> 2025.03 ~ 현재
         </div>
         <div class="meta-item">
-          <strong>상태:</strong> <span class="status completed">완료</span>
+          <strong>상태:</strong> <span class="status developing">진행 중</span>
         </div>
         <div class="meta-item">
-          <strong>역할:</strong> 풀스택 개발자
+          <strong>역할:</strong> 일상 기록자
         </div>
       </div>
     </div>
   </div>
 
   <div class="project-links">
-    <a href="https://github.com/bishoe01/bishoe01.github.io" class="btn btn-primary" target="_blank">
-      <i class="fab fa-github"></i> GitHub 저장소
+    <a href="/projects/mentbox/" class="btn btn-primary">
+      <i class="fas fa-book"></i> 기록 보기
     </a>
-    <a href="/" class="btn btn-secondary">
-      <i class="fas fa-external-link-alt"></i> 라이브 사이트
+    <a href="/archive/" class="btn btn-secondary">
+      <i class="fas fa-archive"></i> 전체 아카이브
     </a>
   </div>
 </div>
 
 <div class="project-tech-stack">
-  <h3>🛠 기술 스택</h3>
+  <h3>🛠 기록 영역</h3>
   <div class="tech-grid">
     <div class="tech-item">
-      <i class="fab fa-html5"></i>
-      <span>HTML5</span>
+      <i class="fas fa-swimming-pool"></i>
+      <span>수영 & 운동</span>
     </div>
     <div class="tech-item">
-      <i class="fab fa-css3-alt"></i>
-      <span>CSS3</span>
+      <i class="fas fa-code"></i>
+      <span>알고리즘 스터디</span>
     </div>
     <div class="tech-item">
-      <i class="fab fa-js-square"></i>
-      <span>JavaScript</span>
+      <i class="fas fa-book-reader"></i>
+      <span>독서 및 학습</span>
     </div>
     <div class="tech-item">
-      <i class="fas fa-gem"></i>
-      <span>Jekyll</span>
+      <i class="fas fa-apple-alt"></i>
+      <span>아카데미 동아리</span>
     </div>
     <div class="tech-item">
-      <i class="fab fa-github"></i>
-      <span>GitHub Pages</span>
+      <i class="fas fa-heart"></i>
+      <span>일상 성찰</span>
     </div>
     <div class="tech-item">
-      <i class="fab fa-markdown"></i>
-      <span>Markdown</span>
+      <i class="fas fa-users"></i>
+      <span>인간관계</span>
     </div>
   </div>
 </div>
 
 <div class="project-description">
   <h3>📖 프로젝트 소개</h3>
-  <p>개발 과정에서 배운 것들과 경험을 체계적으로 정리하고 공유하기 위해 만든 개인 기술 블로그입니다. Jekyll의 정적 사이트 생성 기능과 GitHub Pages의 무료 호스팅을 활용하여 비용 효율적이면서도 성능이 뛰어난 블로그를 구축했습니다.</p>
+  <p>Apple Developer Academy 생활과 일상의 소중한 순간들을 기록하고 성찰하는 공간입니다. 아카데미에서의 학습, 프로젝트 경험과 함께 수영, 독서, 인간관계 등 일상생활의 다양한 면면을 소박하게 담아냅니다.</p>
   
-  <h4>주요 특징</h4>
+  <h4>기록의 의미</h4>
   <ul>
-    <li>반응형 디자인으로 모든 디바이스에서 최적화된 사용자 경험</li>
-    <li>다크/라이트 테마 토글 기능</li>
-    <li>카테고리별 포스트 필터링 및 태그 시스템</li>
-    <li>SEO 최적화 및 소셜 미디어 공유 기능</li>
-    <li>코드 하이라이팅 및 수학 공식 렌더링 지원</li>
+    <li>아카데미 생활의 제대로 된 기록과 성찰</li>
+    <li>일상 속 작은 성장과 변화들을 놓치지 않는 세심한 관찰</li>
+    <li>개인적인 여정을 진솔하고 솔직하게 기록</li>
+    <li>학습, 운동, 독서, 인간관계 등 다양한 영역의 균형있는 성장</li>
+    <li>미래의 나에게 남김 의미있는 기록들</li>
   </ul>
 </div>
 
 <div class="project-posts-section">
-  <h3>📚 관련 포스트 시리즈</h3>
+  <h3 style="margin-bottom: 1rem;">📚 관련 포스트 시리즈</h3>
   
-  {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
+  {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "Mentbox"' %}
   
-  {% if jekyll_posts.size > 0 %}
+  {% if mentbox_posts.size > 0 %}
     <div class="posts-timeline">
-      {% for post in jekyll_posts %}
+      {% for post in mentbox_posts %}
       <article class="timeline-post">
         <div class="timeline-date">
           <time>{{ post.date | date: "%Y.%m.%d" }}</time>

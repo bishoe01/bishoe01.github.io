@@ -21,9 +21,9 @@ permalink: /archive/
         <i class="fas fa-code"></i>
         <span class="tab-text">개발 & 기술</span>
       </button>
-      <button class="archive-tab-button" data-category="AcademyDaily" data-label="AcademyDaily">
-        <i class="fas fa-pen"></i>
-        <span class="tab-text">AcademyDaily</span>
+      <button class="archive-tab-button" data-category="academy-daily" data-label="아카데미일상">
+        <i class="fas fa-calendar-day"></i>
+        <span class="tab-text">아카데미일상</span>
       </button>
     </div>
   </div>
@@ -31,11 +31,11 @@ permalink: /archive/
   <!-- Archive Content Areas -->
   <div class="archive-content">
     <!-- Professional Categories Only -->
-    {% assign professional_categories = "AppleDeveloperAcademy,개발,AcademyDaily" | split: "," %}
+    {% assign professional_categories = "AppleDeveloperAcademy,개발,아카데미일상" | split: "," %}
     {% assign professional_posts = site.posts | where_exp: 'post', 'professional_categories contains post.categories[0]' %}
     {% assign apple_posts = professional_posts | where_exp: 'post', 'post.categories contains "AppleDeveloperAcademy"' %}
     {% assign dev_posts = professional_posts | where_exp: 'post', 'post.categories contains "개발"' %}
-    {% assign jekyll_posts = professional_posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
+    {% assign academy_daily_posts = professional_posts | where_exp: 'post', 'post.categories contains "아카데미일상"' %}
 
     <!-- All Posts View -->
     <div class="archive-tab-content active" data-category="all">
@@ -45,7 +45,7 @@ permalink: /archive/
         <div class="series-card">
           <div class="series-header">
             <div class="series-header-content">
-            <h2 class="series-title-showcase">Apple Academy</h2>
+            <h2 class="series-title">Apple Academy</h2>
             <div class="series-icon">🍎</div>
             </div>
             <div class="series-info">  
@@ -85,7 +85,7 @@ permalink: /archive/
         <div class="series-card">
           <div class="series-header">
           <div class="series-header-content">
-            <h2 class="series-title-showcase">개발 & 기술</h2>
+            <h2 class="series-title">개발 & 기술</h2>
             <div class="series-icon">💻</div>
         </div>
             
@@ -123,26 +123,24 @@ permalink: /archive/
         </div>
         {% endif %}
         
-        <!-- AcademyDaily Series -->
-        {% if jekyll_posts.size > 0 %}
+        <!-- 아카데미일상 Series -->
+        {% if academy_daily_posts.size > 0 %}
         <div class="series-card">
-        <div class="series-header">
-        <div class="series-header-content">
-            <h2 class="series-title-showcase">AcademyDaily</h2>
-            <div class="series-icon">📝</div>
-        </div>
-            <div class="series-info">
-              <p class="series-description">아카데미 프로젝트 이외의 일상들</p>
+          <div class="series-header">
+            <div class="series-header-content">
+              <h2 class="series-title">아카데미일상</h2>
+              <div class="series-icon">🌱</div>
+            </div>
+            <div class="series-info">  
+              <p class="series-description">아카데미 일상생활의 소소한 순간들과 성장 기록</p>
               <div class="series-stats">
-                {% if jekyll_posts.size > 0 %}
-                <span class="date-range">{{ jekyll_posts.last.date | date: "%Y.%m" }} - {{ jekyll_posts.first.date | date: "%Y.%m" }}</span>
-                {% endif %}
+                <span class="date-range">{{ academy_daily_posts.last.date | date: "%Y.%m" }} - {{ academy_daily_posts.first.date | date: "%Y.%m" }}</span>
               </div>
             </div>
           </div>
           
           <div class="recent-posts">
-            {% for post in jekyll_posts limit: 3 %}
+            {% for post in academy_daily_posts limit: 3 %}
             <div class="post-preview">
               <div class="post-meta">
                 <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
@@ -158,8 +156,8 @@ permalink: /archive/
           </div>
           
           <div class="series-footer">
-            <a href="/archive/?category=AcademyDaily" class="view-all-btn">
-              전체 보기 ({{ jekyll_posts.size }}개) →
+            <a href="/archive/?category=academy-daily" class="view-all-btn">
+              전체 보기 ({{ academy_daily_posts.size }}개) →
             </a>
           </div>
         </div>
@@ -215,10 +213,10 @@ permalink: /archive/
       </div>
     </div>
 
-    <!-- AcademyDaily Posts -->
-    <div class="archive-tab-content" data-category="AcademyDaily">
+    <!-- 아카데미일상 Posts -->
+    <div class="archive-tab-content" data-category="academy-daily">
       <div class="posts-timeline">
-        {% for post in jekyll_posts %}
+        {% for post in academy_daily_posts %}
         <div class="timeline-post">
           <div class="timeline-date">
             <time>{{ post.date | date: "%Y.%m.%d" }}</time>

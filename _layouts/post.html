@@ -44,18 +44,18 @@ layout: default
         <!-- Project Link -->
         {% if page.categories.size > 0 %}
         {% assign category = page.categories.first %}
-        {% if category == 'AcademyDaily' or category == 'web-app' or category == 'ai-project' or category ==
+        {% if category == 'Mentbox' or category == 'web-app' or category == 'ai-project' or category ==
         'mobile-app'
         %}
         <div class="project-link-section">
             <a href="/projects/{{ category }}/" class="project-link-banner">
                 <div class="project-info">
                     <i
-                        class="fas fa-{% if category == 'AcademyDaily' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
+                        class="fas fa-{% if category == 'Mentbox' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
                     <div class="project-details">
                         <span class="project-label">프로젝트</span>
                         <span class="project-name">
-                            {% if category == 'AcademyDaily' %}Jekyll 블로그 프로젝트
+                            {% if category == 'Mentbox' %}MentBox
                             {% elsif category == 'web-app' %}웹 앱 프로젝트
                             {% elsif category == 'mobile-app' %}모바일 앱 프로젝트
                             {% endif %}
@@ -75,22 +75,22 @@ layout: default
     </div>
 
     <footer
-        class="post-footer{% if page.categories.size > 0 %}{% assign category = page.categories.first %}{% if category == 'AcademyDaily' or category == 'web-app' or category == 'ai-project' or category == 'mobile-app' %} has-project-nav{% endif %}{% endif %}">
+        class="post-footer{% if page.categories.size > 0 %}{% assign category = page.categories.first %}{% if category == 'Mentbox' or category == 'web-app' or category == 'ai-project' or category == 'mobile-app' %} has-project-nav{% endif %}{% endif %}">
 
         <!-- Project Navigation Section -->
         {% if page.categories.size > 0 %}
         {% assign category = page.categories.first %}
-        {% if category == 'AcademyDaily' or category == 'web-app' or category == 'ai-project' or category ==
+        {% if category == 'Mentbox' or category == 'web-app' or category == 'ai-project' or category ==
         'mobile-app'
         %}
         <section class="project-navigation-section">
             <div class="project-nav-content">
                 <div class="project-nav-info">
                     <i
-                        class="fas fa-{% if category == 'AcademyDaily' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
+                        class="fas fa-{% if category == 'Mentbox' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
                     <div class="project-nav-text">
                         <h4>이 글은
-                            {% if category == 'AcademyDaily' %}Jekyll 블로그 프로젝트
+                            {% if category == 'Mentbox' %}MentBox
                             {% elsif category == 'web-app' %}웹 앱 프로젝트
                             {% elsif category == 'mobile-app' %}모바일 앱 프로젝트
                             {% endif %}
