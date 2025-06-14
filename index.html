@@ -108,51 +108,57 @@ layout: default
             </div>
 
             <div class="featured-projects">
-                <div class="home-project-card featured" data-project="jekyll-blog">
-                    <div class="project-icon">
-                        <i class="fas fa-blog"></i>
+                <a href="/projects/jekyll-blog/" class="home-project-card-modern featured" data-project="jekyll-blog">
+                    <div class="project-image-small">
+                        <i class="fas fa-blog project-icon-small"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>📱 개인 블로그</h3>
-                        <p>Jekyll과 GitHub Pages로 만든 기술 블로그</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Jekyll</span>
-                            <span class="tech-badge">GitHub Pages</span>
+                    <div class="project-content-modern">
+                        <div class="project-header-modern">
+                            <h3>📱 개인 블로그</h3>
+                            <div class="project-status-modern">
+                                <span class="status-modern completed">완료</span>
+                            </div>
                         </div>
-                        <div class="project-status">
-                            <span class="status completed">완료</span>
+                        <p class="project-description-modern">Jekyll과 GitHub Pages로 만든 기술 블로그</p>
+                        <div class="project-tech-modern">
+                            <span class="tech-tag-modern">Jekyll</span>
+                            <span class="tech-tag-modern">GitHub Pages</span>
+                            <span class="tech-tag-modern">JavaScript</span>
+                        </div>
+                        <div class="project-footer-modern">
+                            <span class="post-count-modern">{% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}{{ jekyll_posts.size }}개 포스트</span>
+                            <div class="project-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-actions">
-                        <a href="/projects/jekyll-blog/" class="project-btn primary">
-                            자세히 보기
-                        </a>
-                    </div>
-                </div>
+                </a>
 
-                <div class="home-project-card" data-project="web-app">
-                    <div class="project-icon">
-                        <i class="fas fa-laptop-code"></i>
+                <a href="/projects/web-app/" class="home-project-card-modern" data-project="web-app">
+                    <div class="project-image-small">
+                        <i class="fas fa-laptop-code project-icon-small"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>💻 웹 앱</h3>
-                        <p>React와 Node.js 풀스택 애플리케이션</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">Node.js</span>
+                    <div class="project-content-modern">
+                        <div class="project-header-modern">
+                            <h3>💻 웹 앱</h3>
+                            <div class="project-status-modern">
+                                <span class="status-modern developing">개발 중</span>
+                            </div>
                         </div>
-                        <div class="project-status">
-                            <span class="status developing">개발 중</span>
+                        <p class="project-description-modern">React와 Node.js 풀스택 애플리케이션</p>
+                        <div class="project-tech-modern">
+                            <span class="tech-tag-modern">React</span>
+                            <span class="tech-tag-modern">Node.js</span>
+                            <span class="tech-tag-modern">MongoDB</span>
+                        </div>
+                        <div class="project-footer-modern">
+                            <span class="post-count-modern">{% assign webapp_posts = site.posts | where_exp: 'post', 'post.categories contains "web-app"' %}{{ webapp_posts.size }}개 포스트</span>
+                            <div class="project-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-actions">
-                        <a href="/projects/web-app/" class="project-btn">
-                            자세히 보기
-                        </a>
-                    </div>
-                </div>
-
-
+                </a>
             </div>
         </section>
 
