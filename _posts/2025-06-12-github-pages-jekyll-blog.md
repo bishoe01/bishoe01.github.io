@@ -12,7 +12,7 @@ description: "Jekyll과 GitHub Pages를 사용해서 개발자 블로그를 만�
 
 ## 🤔 왜 Jekyll + GitHub Pages인가?
 
-다른 블로그 플랫폼들도 많은데 왜 AcademyDaily 선택했을까요?
+다른 블로그 플랫폼들도 많은데 왜 아카데미 일상 선택했을까요?
 
 ### 장점들
 - **💰 완전 무료**: GitHub Pages 호스팅 무료

@@ -15,7 +15,7 @@ permalink: /projects/
       </button>
       <button class="tab-button" data-category="web" data-label="웹">
         <i class="fas fa-laptop-code"></i>
-        <span class="tab-text">웹 개발</span>
+        <span class="tab-text">AppleChallenges</span>
       </button>
       <button class="tab-button" data-category="mobile" data-label="모바일">
         <i class="fas fa-mobile-alt"></i>
@@ -33,27 +33,27 @@ permalink: /projects/
     <!-- Web Development Projects -->
     <div class="tab-content" data-category="web">
       <div class="projects-grid">
-        <div class="project-card modern" data-project="AcademyDaily">
+        <div class="project-card modern" data-project="mentbox">
           <div class="project-image">
             <i class="fas fa-blog project-icon"></i>
           </div>
           <div class="project-content-inner">
             <div class="project-header">
-              <h3>📱 개인 블로그</h3>
+              <h3>📱 MentBox</h3>
               <div class="project-status">
                 <span class="status completed">완료</span>
               </div>
             </div>
-            <p class="project-description">Jekyll과 GitHub Pages로 만든 기술 블로그</p>
+            <p class="project-description">Jekyll과  만든 기술 블로그</p>
             <div class="project-tech">
               <span class="tech-tag">Jekyll</span>
               <span class="tech-tag">GitHub Pages</span>
               <span class="tech-tag">JavaScript</span>
             </div>
             <div class="project-footer">
-              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
-              <span class="post-count">{{ jekyll_posts.size }}개 포스트</span>
-              <a href="/projects/AcademyDaily/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
+              {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "Mentbox"' %}
+              <span class="post-count">{{ mentbox_posts.size }}개 포스트</span>
+              <a href="/projects/mentbox/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -197,27 +197,27 @@ permalink: /projects/
     <div class="tab-content active" data-category="all">
       <div class="projects-grid">
         <!-- Web Projects -->
-        <div class="project-card modern" data-project="AcademyDaily">
+        <div class="project-card modern" data-project="mentbox">
           <div class="project-image">
             <i class="fas fa-blog project-icon"></i>
           </div>
           <div class="project-content-inner">
             <div class="project-header">
-              <h3>📱 개인 블로그</h3>
+              <h3>📱 MentBox</h3>
               <div class="project-status">
                 <span class="status completed">완료</span>
               </div>
             </div>
-            <p class="project-description">Jekyll과 GitHub Pages로 만든 기술 블로그</p>
+            <p class="project-description">Jekyll과  만든 기술 블로그</p>
             <div class="project-tech">
               <span class="tech-tag">Jekyll</span>
               <span class="tech-tag">GitHub Pages</span>
               <span class="tech-tag">JavaScript</span>
             </div>
             <div class="project-footer">
-              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
-              <span class="post-count">{{ jekyll_posts.size }}개 포스트</span>
-              <a href="/projects/AcademyDaily/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
+              {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "Mentbox"' %}
+              <span class="post-count">{{ mentbox_posts.size }}개 포스트</span>
+              <a href="/projects/mentbox/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>

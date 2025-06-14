@@ -18,11 +18,11 @@ permalink: /archive/AcademyDaily/
                 AcademyDaily 활용한 정적 사이트 생성, GitHub Pages 배포, 
                 블로그 커스터마이징 과정을 기록한 시리즈입니다.
             </p>
-            {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
+            {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
             <div class="hero-stats">
-                <span class="stat">📝 {{ jekyll_posts.size }}개 포스트</span>
-                {% if jekyll_posts.size > 0 %}
-                <span class="stat">📅 {{ jekyll_posts.last.date | date: "%Y.%m" }} - {{ jekyll_posts.first.date | date: "%Y.%m" }}</span>
+                <span class="stat">📝 {{ mentbox_posts.size }}개 포스트</span>
+                {% if mentbox_posts.size > 0 %}
+                <span class="stat">📅 {{ mentbox_posts.last.date | date: "%Y.%m" }} - {{ mentbox_posts.first.date | date: "%Y.%m" }}</span>
                 {% endif %}
             </div>
         </div>
@@ -30,10 +30,10 @@ permalink: /archive/AcademyDaily/
 </div>
 
 <div class="series-detail-content">
-    {% if jekyll_posts.size > 0 %}
+    {% if mentbox_posts.size > 0 %}
     
     <div class="featured-post">
-        {% assign latest_post = jekyll_posts.first %}
+        {% assign latest_post = mentbox_posts.first %}
         <div class="featured-label">최신 포스트</div>
         <article class="featured-article">
             <div class="featured-meta">
@@ -61,7 +61,7 @@ permalink: /archive/AcademyDaily/
     <div class="posts-timeline">
         <h2 class="timeline-title">전체 포스트</h2>
         
-        {% assign posts_by_year = jekyll_posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+        {% assign posts_by_year = mentbox_posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
         
         {% for year_group in posts_by_year %}
         <div class="timeline-year">

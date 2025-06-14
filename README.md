@@ -5,7 +5,7 @@
 안녕하세요! 👋  
 iOS 개발자 **Finn**의 기술 블로그입니다.  
 이 블로그는 **Jekyll**과 **GitHub Pages**로 구축되었으며,  
-웹 개발, iOS 개발, 그리고 새로운 기술을 배우며 얻은 경험과 인사이트를 공유합니다.
+AppleChallenges, iOS 개발, 그리고 새로운 기술을 배우며 얻은 경험과 인사이트를 공유합니다.
 
 [![GitHub](https://img.shields.io/badge/GitHub-@bishoe01-181717?style=flat-square&logo=github)](https://github.com/bishoe01)
 [![Jekyll](https://img.shields.io/badge/Jekyll-v4.3.3-red?style=flat-square&logo=jekyll)](https://jekyllrb.com/)
@@ -23,7 +23,7 @@ iOS 개발자 **Finn**의 기술 블로그입니다.
 
 ## 💡 관심 분야
 
-- 웹 개발 (Web Development)
+- AppleChallenges (Web Development)
 - iOS 개발 (iOS Development)
 - 새로운 기술 학습 (Learning New Tech)
 

@@ -12,7 +12,7 @@ permalink: /about/
 - Figma
 
 ## 관심 분야
-- 웹 개발
+- AppleChallenges
 - iOS 개발  
 - 새로운 기술 학습
 
