@@ -119,7 +119,7 @@ layout: default
                         </div>
                         <div class="project-footer-modern">
                             <span class="post-count-modern">{% assign mentbox_posts = site.posts | where_exp: 'post',
-                                'post.categories contains "AcademyDaily"' %}{{ mentbox_posts.size }}개 포스트</span>
+                                'post.categories contains "Mentbox"' %}{{ mentbox_posts.size }}개 포스트</span>
                             <div class="project-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
@@ -246,15 +246,15 @@ layout: default
                 </div>
                 {% endif %}
 
-                <!-- 3️⃣ AcademyDaily 시리즈 -->
-                {% assign category_name = 'AcademyDaily' %}
+                <!-- 3️⃣ 아카데미일상 시리즈 -->
+                {% assign category_name = '아카데미일상' %}
                 {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_name' %}
                 {% if category_posts.size > 0 %}
                 <div class="series-card">
                     <div class="series-header-showcase">
-                        <div class="series-icon-showcase">📝</div>
+                        <div class="series-icon-showcase">🌱</div>
                         <div class="series-info">
-                            <h3 class="series-title-showcase">AcademyDaily</h3>
+                            <h3 class="series-title-showcase">아카데미일상</h3>
                             <p class="series-count">{{ category_posts.size }}개의 글</p>
                         </div>
                     </div>
@@ -271,7 +271,7 @@ layout: default
                         {% endfor %}
                         {% if category_posts.size > 2 %}
                         <div class="preview-more">
-                            <a href="/archive/?category=jekyll-blog" class="more-link">
+                            <a href="/archive/?category=academy-daily" class="more-link">
                                 +{{ category_posts.size | minus: 2 }}개 더 보기
                             </a>
                         </div>
@@ -279,7 +279,7 @@ layout: default
                     </div>
 
                     <div class="series-footer">
-                        <a href="/archive/?category=jekyll-blog" class="series-view-all">
+                        <a href="/archive/?category=academy-daily" class="series-view-all">
                             전체 보기 <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
