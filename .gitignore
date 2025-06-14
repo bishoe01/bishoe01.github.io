@@ -8,9 +8,9 @@ ehthumbs.db
 Thumbs.db
 
 # Jekyll
-_site
+_site/
 .sass-cache
-.jekyll-cache
+.jekyll-cache/
 .jekyll-metadata
 vendor
 
@@ -112,3 +112,9 @@ public
 # Temporary folders
 tmp/
 temp/
+
+# Byebug command history
+.byebug_history
+
+# Bundler
+.bundle/
