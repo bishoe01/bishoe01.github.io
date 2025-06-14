@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'ko' }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO -->
+    {% seo %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+    <!-- Analytics -->
+    {% if site.google_analytics %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="nav-brand">
+                <span class="brand-text">{{ site.title }}</span>
+            </a>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="{{ '/' | relative_url }}" class="nav-link">홈</a>
+                <a href="{{ '/about' | relative_url }}" class="nav-link">소개</a>
+                <a href="{{ '/projects' | relative_url }}" class="nav-link">프로젝트</a>
+                <a href="{{ '/archive' | relative_url }}" class="nav-link">아카이브</a>
+                <a href="{{ '/contact' | relative_url }}" class="nav-link">연락</a>
+
+                <!-- Dark mode toggle -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ site.title }}</h3>
+                    <p>{{ site.description }}</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>링크</h4>
+                    <ul>
+                        <li><a href="{{ '/' | relative_url }}">홈</a></li>
+                        <li><a href="{{ '/about' | relative_url }}">소개</a></li>
+                        <li><a href="{{ '/projects' | relative_url }}">프로젝트</a></li>
+                        <li><a href="{{ '/archive' | relative_url }}">아카이브</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>소셜</h4>
+                    <div class="social-links">
+                        {% if site.github_username %}
+                        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.linkedin_username %}
+                        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.twitter_username %}
+                        <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                        <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener">
+                            <i class="fas fa-rss"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author }}. Made with ❤️ using Jekyll & GitHub Pages.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+
+</html>

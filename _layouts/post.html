@@ -1,0 +1,262 @@
+---
+layout: default
+---
+
+<article class="post">
+    <header class="post-header">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%Y년 %m월 %d일" }}
+        </time>
+        <div class="post-meta">
+            {% if page.categories.size > 0 %}
+            <div class="post-categories">
+                {% for category in page.categories %}
+                <span class="category">{{ category }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if page.tags.size > 0 %}
+            <div class="post-tags">
+                {% for tag in page.tags %}
+                <span class="tag">#{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <h1 class="post-title">{{ page.title }}</h1>
+
+        {% if page.description %}
+        <p class="post-description">{{ page.description }}</p>
+        {% endif %}
+
+
+        <div class="post-info">
+            <span class="reading-time">
+                <i class="fas fa-clock"></i>
+                {% assign words = content | number_of_words %}
+                {% if words < 360 %} 1분 읽기 {% else %} {{ words | divided_by: 180 }}분 읽기 {% endif %} </span>
+                    <span class="post-author">
+                        <i class="fas fa-user"></i>
+                        {{ page.author | default: site.author }}
+                    </span>
+        </div>
+        <!-- Project Link -->
+        {% if page.categories.size > 0 %}
+        {% assign category = page.categories.first %}
+        {% if category == 'jekyll-blog' or category == 'web-app' or category == 'ai-project' or category == 'mobile-app'
+        %}
+        <div class="project-link-section">
+            <a href="/projects/{{ category }}/" class="project-link-banner">
+                <div class="project-info">
+                    <i
+                        class="fas fa-{% if category == 'jekyll-blog' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
+                    <div class="project-details">
+                        <span class="project-label">프로젝트</span>
+                        <span class="project-name">
+                            {% if category == 'jekyll-blog' %}Jekyll 블로그 프로젝트
+                            {% elsif category == 'web-app' %}웹 앱 프로젝트
+                            {% elsif category == 'mobile-app' %}모바일 앱 프로젝트
+                            {% endif %}
+                        </span>
+                    </div>
+                    <i class="fas fa-external-link-alt"></i>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+        {% endif %}
+
+    </header>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <footer
+        class="post-footer{% if page.categories.size > 0 %}{% assign category = page.categories.first %}{% if category == 'jekyll-blog' or category == 'web-app' or category == 'ai-project' or category == 'mobile-app' %} has-project-nav{% endif %}{% endif %}">
+
+        <!-- Project Navigation Section -->
+        {% if page.categories.size > 0 %}
+        {% assign category = page.categories.first %}
+        {% if category == 'jekyll-blog' or category == 'web-app' or category == 'ai-project' or category == 'mobile-app'
+        %}
+        <section class="project-navigation-section">
+            <div class="project-nav-content">
+                <div class="project-nav-info">
+                    <i
+                        class="fas fa-{% if category == 'jekyll-blog' %}blog{% elsif category == 'web-app' %}laptop-code{% elsif category == 'ai-project' %}robot{% elsif category == 'mobile-app' %}mobile-alt{% endif %}"></i>
+                    <div class="project-nav-text">
+                        <h4>이 글은
+                            {% if category == 'jekyll-blog' %}Jekyll 블로그 프로젝트
+                            {% elsif category == 'web-app' %}웹 앱 프로젝트
+                            {% elsif category == 'mobile-app' %}모바일 앱 프로젝트
+                            {% endif %}
+                            의 일부입니다
+                        </h4>
+                        <p>프로젝트에 대한 더 많은 정보와 관련 글들을 확인해보세요.</p>
+                    </div>
+                </div>
+                <div class="project-nav-actions">
+                    <a href="/projects/{{ category }}/" class="btn btn-primary">
+                        <i class="fas fa-folder-open"></i>
+                        프로젝트 보기
+                    </a>
+                    {% assign project_posts = site.posts | where_exp: 'post', 'post.categories contains category' %}
+                    {% if project_posts.size > 1 %}
+                    <a href="/archive/?category={{ category }}" class="btn btn-secondary">
+                        <i class="fas fa-list"></i>
+                        관련 글 {{ project_posts.size }}개
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% endif %}
+
+        <!-- Category-based Post Navigation Section -->
+        <section class="post-navigation-section">
+            <h4 class="section-title">
+                {% if page.categories.size > 0 %}
+                '{{ page.categories.first }}' 카테고리의 다른 글
+                {% else %}
+                다른 글 보기
+                {% endif %}
+            </h4>
+            <div class="post-navigation">
+                {% if page.categories.size > 0 %}
+                {% assign current_category = page.categories.first %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains current_category'
+                %}
+                {% assign current_index = nil %}
+
+                <!-- 현재 글의 인덱스 찾기 -->
+                {% for post in category_posts %}
+                {% if post.url == page.url %}
+                {% assign current_index = forloop.index0 %}
+                {% break %}
+                {% endif %}
+                {% endfor %}
+
+                <!-- 이전 글 (카테고리 내에서) -->
+                {% if current_index and current_index > 0 %}
+                {% assign prev_index = current_index | minus: 1 %}
+                {% assign prev_post = category_posts[prev_index] %}
+                <a class="nav-previous" href="{{ prev_post.url | relative_url }}">
+                    <div class="nav-direction">
+                        <i class="fas fa-chevron-left"></i>
+                        이전 글
+                    </div>
+                    <div class="nav-title">{{ prev_post.title }}</div>
+                    <div class="nav-date">{{ prev_post.date | date: "%Y.%m.%d" }}</div>
+                </a>
+                {% else %}
+                <div class="nav-placeholder">
+                    <div class="nav-direction">이전 글</div>
+                    <div class="nav-title">첫 번째 글입니다</div>
+                </div>
+                {% endif %}
+
+                <!-- 다음 글 (카테고리 내에서) -->
+                {% assign next_index = current_index | plus: 1 %}
+                {% if category_posts[next_index] %}
+                {% assign next_post = category_posts[next_index] %}
+                <a class="nav-next" href="{{ next_post.url | relative_url }}">
+                    <div class="nav-direction">
+                        다음 글
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nav-title">{{ next_post.title }}</div>
+                    <div class="nav-date">{{ next_post.date | date: "%Y.%m.%d" }}</div>
+                </a>
+                {% else %}
+                <div class="nav-placeholder">
+                    <div class="nav-direction">다음 글</div>
+                    <div class="nav-title">마지막 글입니다</div>
+                </div>
+                {% endif %}
+                {% else %}
+                <!-- 카테고리가 없는 경우 기존 방식 사용 -->
+                {% if page.previous.url %}
+                <a class="nav-previous" href="{{ page.previous.url | relative_url }}">
+                    <div class="nav-direction">
+                        <i class="fas fa-chevron-left"></i>
+                        이전 글
+                    </div>
+                    <div class="nav-title">{{ page.previous.title }}</div>
+                    <div class="nav-date">{{ page.previous.date | date: "%Y.%m.%d" }}</div>
+                </a>
+                {% endif %}
+
+                {% if page.next.url %}
+                <a class="nav-next" href="{{ page.next.url | relative_url }}">
+                    <div class="nav-direction">
+                        다음 글
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="nav-title">{{ page.next.title }}</div>
+                    <div class="nav-date">{{ page.next.date | date: "%Y.%m.%d" }}</div>
+                </a>
+                {% endif %}
+                {% endif %}
+            </div>
+
+            <!-- 카테고리 전체 글 보기 링크 -->
+            {% if page.categories.size > 0 %}
+            {% assign current_category = page.categories.first %}
+            {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains current_category' %}
+            {% if category_posts.size > 1 %}
+            <div class="category-nav-footer">
+                <a href="/archive/{{ current_category | slugify }}/" class="category-all-posts">
+                    <i class="fas fa-list"></i>
+                    '{{ current_category }}' 카테고리 전체 글 보기 ({{ category_posts.size }}개)
+                </a>
+            </div>
+            {% endif %}
+            {% endif %}
+        </section>
+    </footer>
+</article>
+
+<!-- Related posts (same category) -->
+{% if page.categories.size > 0 %}
+{% assign current_category = page.categories.first %}
+{% assign related_posts = site.posts | where_exp: 'post', 'post.categories contains current_category' | where_exp:
+'post', 'post.url != page.url' | limit: 3 %}
+{% if related_posts.size > 0 %}
+<section class="related-posts">
+    <h3>'{{ current_category }}' 카테고리의 관련 글</h3>
+    <div class="related-grid">
+        {% for post in related_posts %}
+        <article class="related-post">
+            <a href="{{ post.url | relative_url }}">
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                <time>{{ post.date | date: "%Y.%m.%d" }}</time>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% else %}
+<!-- 카테고리가 없는 경우 기존 related posts 사용 -->
+{% assign related_posts = site.related_posts | limit: 3 %}
+{% if related_posts.size > 0 %}
+<section class="related-posts">
+    <h3>관련 글</h3>
+    <div class="related-grid">
+        {% for post in related_posts %}
+        <article class="related-post">
+            <a href="{{ post.url | relative_url }}">
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                <time>{{ post.date | date: "%Y.%m.%d" }}</time>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endif %}
