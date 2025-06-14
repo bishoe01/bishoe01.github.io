@@ -144,7 +144,7 @@ permalink: /projects/web-app/
 </div>
 
 <div class="project-navigation">
-  <a href="/projects/jekyll-blog/" class="nav-btn">
+  <a href="/projects/AcademyDaily/" class="nav-btn">
     <i class="fas fa-arrow-left"></i> 이전 프로젝트
   </a>
   <a href="/projects/ai-project/" class="nav-btn">

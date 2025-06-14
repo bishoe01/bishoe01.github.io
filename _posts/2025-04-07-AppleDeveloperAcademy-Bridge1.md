@@ -1,9 +1,9 @@
 ---
 title: "🌉 AppleDeveloperAcademy Bridge1 회고"
 date: 2025-04-07
-categories: [애플아카데미]
+categories: [AppleDeveloperAcademy]
 tags: [회고, Bridge1]
-description: "애플아카데미 4주차 Bridge1의 회고"
+description: "AppleDeveloperAcademy 4주차 Bridge1의 회고"
 ---
 
 ## BRIDGE1 - Building Relationship

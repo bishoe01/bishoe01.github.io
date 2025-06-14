@@ -2,7 +2,7 @@
 layout: page
 title: "Jekyll 블로그 프로젝트"
 description: "Jekyll과 GitHub Pages로 만든 개인 개발 블로그 제작기"
-permalink: /projects/jekyll-blog/
+permalink: /projects/AcademyDaily/
 ---
 
 <div class="project-detail-header">
@@ -84,7 +84,7 @@ permalink: /projects/jekyll-blog/
 <div class="project-posts-section">
   <h3>📚 관련 포스트 시리즈</h3>
   
-  {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}
+  {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
   
   {% if jekyll_posts.size > 0 %}
     <div class="posts-timeline">

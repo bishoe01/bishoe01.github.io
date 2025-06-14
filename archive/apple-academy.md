@@ -18,7 +18,7 @@ permalink: /archive/apple-academy/
                 애플 디벨로퍼 아카데미에서의 Challenge-Based Learning(CBL) 경험과 
                 iOS 개발 학습 과정을 기록한 시리즈입니다.
             </p>
-            {% assign apple_posts = site.posts | where_exp: 'post', 'post.categories contains "애플아카데미"' %}
+            {% assign apple_posts = site.posts | where_exp: 'post', 'post.categories contains "AppleDeveloperAcademy"' %}
             <div class="hero-stats">
                 <span class="stat">📝 {{ apple_posts.size }}개 포스트</span>
                 {% if apple_posts.size > 0 %}

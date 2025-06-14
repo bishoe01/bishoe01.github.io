@@ -33,7 +33,7 @@ permalink: /projects/
     <!-- Web Development Projects -->
     <div class="tab-content" data-category="web">
       <div class="projects-grid">
-        <div class="project-card modern" data-project="jekyll-blog">
+        <div class="project-card modern" data-project="AcademyDaily">
           <div class="project-image">
             <i class="fas fa-blog project-icon"></i>
           </div>
@@ -51,9 +51,9 @@ permalink: /projects/
               <span class="tech-tag">JavaScript</span>
             </div>
             <div class="project-footer">
-              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}
+              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
               <span class="post-count">{{ jekyll_posts.size }}개 포스트</span>
-              <a href="/projects/jekyll-blog/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
+              <a href="/projects/AcademyDaily/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ permalink: /projects/
     <div class="tab-content active" data-category="all">
       <div class="projects-grid">
         <!-- Web Projects -->
-        <div class="project-card modern" data-project="jekyll-blog">
+        <div class="project-card modern" data-project="AcademyDaily">
           <div class="project-image">
             <i class="fas fa-blog project-icon"></i>
           </div>
@@ -215,9 +215,9 @@ permalink: /projects/
               <span class="tech-tag">JavaScript</span>
             </div>
             <div class="project-footer">
-              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "jekyll-blog"' %}
+              {% assign jekyll_posts = site.posts | where_exp: 'post', 'post.categories contains "AcademyDaily"' %}
               <span class="post-count">{{ jekyll_posts.size }}개 포스트</span>
-              <a href="/projects/jekyll-blog/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
+              <a href="/projects/AcademyDaily/" class="project-link">자세히 <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
