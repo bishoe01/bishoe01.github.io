@@ -159,21 +159,64 @@ layout: default
         <!-- Categories Section -->
         <section class="section">
             <div class="section-header">
-                <h2 class="section-title">📂 카테고리별 글</h2>
+                <h2 class="section-title">📂 시리즈별 글</h2>
                 <a href="{{ '/archive' | relative_url }}" class="section-link">
                     아카이브 <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
 
-            <div class="categories-simple">
-                {% assign category_counts = site.posts | group_by: 'categories' %}
-                {% for category_group in category_counts limit: 6 %}
-                {% if category_group.name != "" %}
-                <div class="category-item">
-                    <a href="/archive/#{{ category_group.name }}" class="category-link">
-                        <span class="category-name">{{ category_group.name }}</span>
-                        <span class="category-count">{{ category_group.items.size }}</span>
-                    </a>
+            <div class="series-showcase">
+                {% assign all_categories = site.posts | map: 'categories' | join: ',' | split: ',' | sort | uniq %}
+                {% for category in all_categories limit: 6 %}
+                {% if category != "" %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category' %}
+                {% assign latest_post = category_posts.first %}
+                
+                <div class="series-card">
+                    <div class="series-header">
+                        <div class="series-icon">
+                            {% if category == '애플아카데미' %}
+                                🍎
+                            {% elsif category == '개발' %}
+                                💻
+                            {% elsif category == 'jekyll-blog' %}
+                                🌐
+                            {% else %}
+                                📚
+                            {% endif %}
+                        </div>
+                        <div class="series-info">
+                            <h3 class="series-title">{{ category }}</h3>
+                            <p class="series-count">{{ category_posts.size }}개의 글</p>
+                        </div>
+                        <div class="series-stats">
+                            <span class="last-updated">{{ latest_post.date | date: "%m/%d" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="series-preview">
+                        {% for post in category_posts limit: 2 %}
+                        <div class="preview-item">
+                            <a href="{{ post.url | relative_url }}" class="preview-link">
+                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' | replace: ']', '' | truncate: 40 }}</span>
+                                <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% if category_posts.size > 2 %}
+                        <div class="preview-more">
+                            <a href="/archive/#{{ category }}" class="more-link">
+                                +{{ category_posts.size | minus: 2 }}개 더 보기
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="series-footer">
+                        <a href="/archive/#{{ category }}" class="series-view-all">
+                            전체 보기 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
                 {% endif %}
                 {% endfor %}

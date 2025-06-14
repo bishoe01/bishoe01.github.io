@@ -1,3 +1,6 @@
+/* ===== SERIES SHOWCASE STYLES IMPORT ===== */
+@import url('series-showcase.css');
+
 /* ===== CSS RESET & BASE ===== */
 * {
     margin: 0;
