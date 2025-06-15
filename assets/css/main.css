@@ -3281,7 +3281,7 @@ body[class*="contact"] .page-body h3:hover::after {
 }
 
 .archive-tabs-container {
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
     display: flex;
     justify-content: center;
 }
