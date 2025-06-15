@@ -44,11 +44,11 @@ permalink: /projects/
                 <span class="status completed">완료</span>
               </div>
             </div>
-            <p class="project-description">Jekyll과  만든 기술 블로그</p>
+            <p class="project-description">멘토와의 소통 공간</p>
             <div class="project-tech">
-              <span class="tech-tag">Jekyll</span>
-              <span class="tech-tag">GitHub Pages</span>
-              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">SwiftUI</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">AppleLogin</span>
             </div>
             <div class="project-footer">
               {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "Mentbox"' %}
@@ -208,11 +208,11 @@ permalink: /projects/
                 <span class="status completed">완료</span>
               </div>
             </div>
-            <p class="project-description">Jekyll과  만든 기술 블로그</p>
+            <p class="project-description">멘토와의 소통 공간</p>
             <div class="project-tech">
-              <span class="tech-tag">Jekyll</span>
-              <span class="tech-tag">GitHub Pages</span>
-              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">SwiftUI</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">AppleLogin</span>
             </div>
             <div class="project-footer">
               {% assign mentbox_posts = site.posts | where_exp: 'post', 'post.categories contains "Mentbox"' %}
