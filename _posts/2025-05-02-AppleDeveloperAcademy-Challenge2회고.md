@@ -1,6 +1,6 @@
 ---
 title: "📨 AppleDeveloperAcademy Challenge2 회고"
-date: 2025-05-07
+date: 2025-05-02
 categories: [AppleDeveloperAcademy]
 tags: [personal-project, 회고]
 description: "개인 프로젝트 MentBox의 개발 과정을 회고"
