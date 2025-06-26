@@ -1,0 +1,71 @@
+
+/* Style strong elements inside lists */
+.page-body li strong {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mobile responsiveness for pages */
+@media (max-width: 768px) {
+    .page-container {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .page-header {
+        text-align: left;
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: var(--spacing-md);
+    }
+    
+    .page-body h1 {
+        font-size: 1.75rem;
+    }
+    
+    .page-body h2 {
+        font-size: 1.5rem;
+    }
+    
+    .page-body h3 {
+        font-size: 1.25rem;
+    }
+}
+
+
+
+/* ===== PAGE ANIMATIONS ===== */
+.page-container {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page content hover effects */
+.page-body h2,
+.page-body h3 {
+    transition: color var(--transition-fast);
+}
+
+.page-body h2:hover,
+.page-body h3:hover {
+    color: var(--primary-color);
+}

@@ -1,0 +1,210 @@
+/* ===== PROJECT PAGE STYLES ===== */
+.project-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-medium);
+}
+
+.project-section:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.project-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.project-header h3 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.project-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+}
+
+.project-details p {
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.project-details strong {
+    min-width: 60px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status.developing {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.status.planning {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+.status.completed {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.project-posts {
+    margin-top: var(--spacing-lg);
+}
+
+.project-posts h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.posts-list {
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.project-post-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-fast);
+}
+
+.project-post-item:last-child {
+    border-bottom: none;
+}
+
+.project-post-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.project-post-item .post-date {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.project-post-item h5 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.project-post-item h5 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.project-post-item h5 a:hover {
+    color: var(--primary-color);
+}
+
+.project-post-item .post-excerpt {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.view-all-posts {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.view-all-posts:hover {
+    gap: var(--spacing-sm);
+    color: var(--primary-dark);
+}
+
+.no-posts-message {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-color);
+    margin-top: var(--spacing-lg);
+}
+
+.no-posts-message p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.projects-footer {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.projects-footer h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.contribute-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.contribute-section h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+
+
+/* Projects page - style project cards */
+.page-container article[class*="projects"] .page-body h3 + ul,
+body[class*="projects"] .page-body h3 + ul {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-light);
+}
