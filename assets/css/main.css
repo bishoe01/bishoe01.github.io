@@ -6,11 +6,8 @@
 /* 2. 레이아웃 (네비게이션, 페이지 레이아웃) */
 @import url('layout.css');
 
-/* 3. 컴포넌트 */
-@import url('code-copy.css');
-@import url('series-showcase.css');
-@import url('project_card.css');
-@import url('featureCard.css');
+/* 3. 컴포넌트 (코드 복사, 시리즈, 프로젝트 카드, 피처 카드) */
+@import url('components.css');
 
 /* 4. 일반 페이지 */
 @import url('home.css');
