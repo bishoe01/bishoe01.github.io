@@ -9,13 +9,8 @@
 /* 3. 컴포넌트 (코드 복사, 시리즈, 프로젝트 카드, 피처 카드) */
 @import url('components.css');
 
-/* 4. 일반 페이지 */
-@import url('home.css');
-@import url('hero.css');
-@import url('pagestyle/homepageStyle.css');
-@import url('pagestyle/otherpage.css');
-@import url('pagestyle/pagesetting.css');
-@import url('pagestyle/dailypage.css');
+/* 4. 일반 페이지 (홈, 히어로, 기타 페이지들) */
+@import url('pages.css');
 
 /* 5. 특수 페이지 */
 @import url('pagestyle/archivepage.css');
