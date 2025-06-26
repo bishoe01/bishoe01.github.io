@@ -159,6 +159,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Project tabs functionality
+    const projectTabButtons = document.querySelectorAll('.tab-button');
+    const projectTabContents = document.querySelectorAll('.tab-content');
+
+    if (projectTabButtons.length > 0) {
+        projectTabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Remove active class from all buttons and contents
+                projectTabButtons.forEach(btn => btn.classList.remove('active'));
+                projectTabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const targetContent = document.querySelector(`.tab-content[data-category="${category}"]`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                    
+                    // Add animation effect
+                    const projectCards = targetContent.querySelectorAll('.project-card');
+                    projectCards.forEach((card, index) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            });
+        });
+    }
+
+    // Archive tabs functionality
+    const archiveTabButtons = document.querySelectorAll('.archive-tab-button');
+    const archiveTabContents = document.querySelectorAll('.archive-tab-content');
+
+    if (archiveTabButtons.length > 0) {
+        archiveTabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Remove active class from all buttons and contents
+                archiveTabButtons.forEach(btn => btn.classList.remove('active'));
+                archiveTabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const targetContent = document.querySelector(`.archive-tab-content[data-category="${category}"]`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+    }
+
     // Add animation to elements when they come into view
     const animateElements = document.querySelectorAll('.post-card, .hero');
     const animationObserver = new IntersectionObserver((entries) => {
