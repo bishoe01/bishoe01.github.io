@@ -191,6 +191,7 @@ pre {
 .series-preview {
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 .preview-item {
@@ -199,7 +200,7 @@ pre {
     transition: all var(--transition-fast);
 }
 
-.preview-item:last-child {
+.series-preview .preview-item:last-child {
     border-bottom: none;
 }
 
@@ -211,10 +212,11 @@ pre {
 .preview-link {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--spacing-md);
     text-decoration: none;
     color: inherit;
+    padding: var(--spacing-xs) 0;
 }
 
 .preview-title {
@@ -239,34 +241,62 @@ pre {
 }
 
 .preview-more {
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
-    border-top: 1px dashed var(--border-color);
+    padding: var(--spacing-md) 0 var(--spacing-xs);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .more-link {
     display: inline-flex;
     align-items: center;
+    gap: var(--spacing-xs);
     font-size: 0.85rem;
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all var(--transition-fast);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    background: rgba(102, 126, 234, 0.05);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.more-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.5s ease;
 }
 
 .more-link:hover {
-    background: rgba(102, 126, 234, 0.1);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
     color: var(--primary-dark);
-    transform: translateX(3px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    border-color: var(--primary-color);
+}
+
+.more-link:hover::before {
+    left: 100%;
+}
+
+.more-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.15);
 }
 
 .series-footer {
-    padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--bg-secondary);
+    padding: var(--spacing-lg);
+    background: linear-gradient(to bottom, var(--bg-color), var(--bg-secondary));
     border-top: 1px solid var(--border-color);
+    text-align: center;
 }
 
 .series-view-all {
@@ -275,21 +305,42 @@ pre {
     gap: var(--spacing-sm);
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     transition: all var(--transition-fast);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-md);
-    border: 1px solid transparent;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--primary-color);
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.series-view-all::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    transition: left 0.3s ease;
+    z-index: -1;
 }
 
 .series-view-all:hover {
     color: white;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.series-view-all:hover::before {
+    left: 0;
+}
+
+.series-view-all:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
 }
 
 .series-view-all i {

@@ -180,7 +180,7 @@ layout: default
                     </div>
 
                     <div class="series-preview">
-                        {% for post in category_posts limit: 2 %}
+                        {% for post in category_posts limit: 3 %}
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
@@ -189,13 +189,6 @@ layout: default
                             </a>
                         </div>
                         {% endfor %}
-                        {% if category_posts.size > 2 %}
-                        <div class="preview-more">
-                            <a href="/archive/?category=apple-academy" class="more-link">
-                                +{{ category_posts.size | minus: 2 }}개 더 보기
-                            </a>
-                        </div>
-                        {% endif %}
                     </div>
 
                     <div class="series-footer">
@@ -220,7 +213,7 @@ layout: default
                     </div>
 
                     <div class="series-preview">
-                        {% for post in category_posts limit: 2 %}
+                        {% for post in category_posts limit: 3 %}
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
@@ -229,13 +222,6 @@ layout: default
                             </a>
                         </div>
                         {% endfor %}
-                        {% if category_posts.size > 2 %}
-                        <div class="preview-more">
-                            <a href="/archive/?category=development" class="more-link">
-                                +{{ category_posts.size | minus: 2 }}개 더 보기
-                            </a>
-                        </div>
-                        {% endif %}
                     </div>
 
                     <div class="series-footer">
@@ -260,7 +246,7 @@ layout: default
                     </div>
 
                     <div class="series-preview">
-                        {% for post in category_posts limit: 2 %}
+                        {% for post in category_posts limit: 3 %}
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
@@ -269,13 +255,6 @@ layout: default
                             </a>
                         </div>
                         {% endfor %}
-                        {% if category_posts.size > 2 %}
-                        <div class="preview-more">
-                            <a href="/archive/?category=academy-daily" class="more-link">
-                                +{{ category_posts.size | minus: 2 }}개 더 보기
-                            </a>
-                        </div>
-                        {% endif %}
                     </div>
 
                     <div class="series-footer">
