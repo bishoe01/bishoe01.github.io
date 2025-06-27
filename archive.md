@@ -49,7 +49,7 @@ permalink: /archive/
             <div class="series-icon">🍎</div>
             </div>
             <div class="series-info">  
-              <p class="series-description">애플 디벨로퍼 아카데미에서의 학습과 프로젝트 경험</p>
+              <p class="series-description">애플 디벨로퍼 아카데미에서의 학습 경험</p>
               <div class="series-stats">
                 <span class="date-range">{{ apple_posts.last.date | date: "%Y.%m" }} - {{ apple_posts.first.date | date: "%Y.%m" }}</span>
               </div>
@@ -85,12 +85,12 @@ permalink: /archive/
         <div class="series-card">
           <div class="series-header">
           <div class="series-header-content">
-            <h2 class="series-title">개발 & 기술</h2>
+            <h2 class="series-title">About Swift</h2>
             <div class="series-icon">💻</div>
         </div>
             
             <div class="series-info">
-              <p class="series-description">프로그래밍 언어, 프레임워크, 개발 도구 학습 기록</p>
+              <p class="series-description">Swift/SwiftUI 학습 기록</p>
               <div class="series-stats">
                 {% if dev_posts.size > 0 %}
                 <span class="date-range">{{ dev_posts.last.date | date: "%Y.%m" }} - {{ dev_posts.first.date | date: "%Y.%m" }}</span>
