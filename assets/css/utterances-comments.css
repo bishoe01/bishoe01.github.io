@@ -1,0 +1,178 @@
+/* ===== UTTERANCES COMMENTS STYLES ===== */
+
+.comments-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    background: linear-gradient(to bottom, var(--bg-color), var(--bg-secondary));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.comments-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.comments-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+.comments-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.comments-title i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.comments-description {
+    margin-bottom: var(--spacing-md);
+}
+
+.comments-description p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+#utterances-container {
+    background: var(--bg-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-medium);
+    position: relative;
+    min-height: 150px;
+}
+
+#utterances-container:hover {
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+/* Utterances 테마 커스터마이징 */
+.utterances {
+    max-width: 100% !important;
+    background: transparent !important;
+}
+
+.utterances-frame {
+    border-radius: var(--radius-md) !important;
+    background: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+    color-scheme: light dark !important;
+    width: 100% !important;
+}
+
+/* Utterances 기본 스타일링 */
+.utterances {
+    max-width: 100% !important;
+    background: transparent !important;
+}
+
+/* Utterances iframe 스타일링 */
+.utterances-frame {
+    background: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    color-scheme: light dark !important;
+    width: 100% !important;
+    min-height: 200px !important;
+}
+
+/* Utterances가 로드된 후 스타일 조정 */
+.utterances:not(:empty) {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 로딩 상태 스타일 */
+#utterances-container:empty::before {
+    content: '💬 댓글을 불러오는 중...';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-color);
+    animation: pulse 2s infinite;
+    font-weight: 500;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .comments-section {
+        padding: var(--spacing-lg) var(--spacing-md);
+        margin: var(--spacing-lg) 0;
+        border-radius: var(--radius-lg);
+    }
+    
+    .comments-title {
+        font-size: 1.25rem;
+    }
+    
+    .comments-title i {
+        font-size: 1rem;
+    }
+    
+    #utterances-container {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .comments-section {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .comments-title {
+        font-size: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .comments-description p {
+        font-size: 0.85rem;
+    }
+    
+    #utterances-container {
+        padding: var(--spacing-sm);
+    }
+}
