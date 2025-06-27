@@ -31,6 +31,9 @@
     {% if page.url == '/all-posts/' %}
     <link rel="stylesheet" href="{{ '/assets/css/pagestyle/all-posts.css' | relative_url }}">
     {% endif %}
+    {% if page.layout == 'post' %}
+    <link rel="stylesheet" href="{{ '/assets/css/giscus-comments.css' | relative_url }}">
+    {% endif %}
 
     <!-- Analytics -->
     {% if site.google_analytics %}
