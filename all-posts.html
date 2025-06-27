@@ -1,0 +1,238 @@
+---
+layout: default
+title: 전체 글
+permalink: /all-posts/
+---
+
+<div class="all-posts-page">
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1 class="page-title">📚 전체 글 보기</h1>
+            <p class="page-subtitle">지금까지 작성한 모든 글을 한눈에 살펴보세요</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="filter-group">
+                <input type="text" id="search-input" class="search-box" placeholder="🔍 제목, 내용으로 검색...">
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> 전체
+                    </button>
+                    <button class="filter-btn" data-filter="AppleDeveloperAcademy">
+                        <i class="fas fa-graduation-cap"></i> Academy
+                    </button>
+                    <button class="filter-btn" data-filter="개발">
+                        <i class="fas fa-code"></i> 개발
+                    </button>
+                    <button class="filter-btn" data-filter="아카데미일상">
+                        <i class="fas fa-seedling"></i> 일상
+                    </button>
+                    <button class="filter-btn" data-filter="project">
+                        <i class="fas fa-rocket"></i> 프로젝트
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <select id="sort-select" class="sort-dropdown">
+                    <option value="newest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                    <option value="title">제목순</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Posts Grid -->
+    <section class="posts-section">
+        <div class="posts-stats">
+            <span class="total-count">총 <strong id="post-count">{{ site.posts.size }}</strong>개의 글</span>
+            <span class="filtered-count" style="display: none;">필터링: <strong id="filtered-count">0</strong>개</span>
+        </div>
+
+        <div class="posts-grid" id="posts-grid">
+            {% for post in site.posts %}
+            <article class="post-card" 
+                     data-category="{{ post.categories | join: ',' }}" 
+                     data-date="{{ post.date | date: '%Y%m%d' }}"
+                     data-title="{{ post.title | downcase }}">
+                
+                <!-- Category Label -->
+                <div class="post-card-header">
+                    <span class="category-label">
+                        {% if post.categories contains 'AppleDeveloperAcademy' %}
+                            [Apple Academy]
+                        {% elsif post.categories contains '개발' %}
+                            [개발 노트]
+                        {% elsif post.categories contains '아카데미일상' %}
+                            [일상]
+                        {% elsif post.categories[0] %}
+                            [프로젝트: {{ post.categories[0] }}]
+                        {% else %}
+                            [미분류]
+                        {% endif %}
+                    </span>
+                    <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+                </div>
+
+                <!-- Post Content -->
+                <div class="post-card-body">
+                    <h3 class="post-card-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </h3>
+                    
+                    {% if post.excerpt %}
+                    <p class="post-excerpt">
+                        {{ post.excerpt | strip_html | truncate: 120 }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <!-- Post Footer -->
+                <div class="post-card-footer">
+                    <div class="post-meta">
+                        <span class="read-time">
+                            <i class="far fa-clock"></i> 
+                            {% assign words = post.content | number_of_words %}
+                            {% if words < 360 %}
+                                1분 읽기
+                            {% else %}
+                                {{ words | divided_by: 180 }}분 읽기
+                            {% endif %}
+                        </span>
+                    </div>
+                    
+                    {% if post.tags.size > 0 %}
+                    <div class="post-tags">
+                        {% for tag in post.tags limit: 3 %}
+                        <span class="tag">#{{ tag }}</span>
+                        {% endfor %}
+                        {% if post.tags.size > 3 %}
+                        <span class="tag-more">+{{ post.tags.size | minus: 3 }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>검색 결과가 없습니다</h3>
+            <p>다른 검색어를 시도해보세요</p>
+        </div>
+    </section>
+</div>
+
+<!-- JavaScript for filtering and sorting -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sort-select');
+    const postsGrid = document.getElementById('posts-grid');
+    const postCards = document.querySelectorAll('.post-card');
+    const postCount = document.getElementById('post-count');
+    const filteredCount = document.getElementById('filtered-count');
+    const noResults = document.getElementById('no-results');
+    const totalCount = document.querySelector('.total-count');
+    const filteredCountSpan = document.querySelector('.filtered-count');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // Filter functionality
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.filter;
+            filterAndSort();
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+        currentSearch = this.value.toLowerCase();
+        filterAndSort();
+    });
+
+    // Sort functionality
+    sortSelect.addEventListener('change', filterAndSort);
+
+    function filterAndSort() {
+        const cards = Array.from(postCards);
+        let visibleCount = 0;
+
+        // Filter
+        cards.forEach(card => {
+            const category = card.dataset.category;
+            const title = card.dataset.title;
+            const excerpt = card.querySelector('.post-excerpt')?.textContent.toLowerCase() || '';
+            
+            const matchesFilter = currentFilter === 'all' || 
+                                (currentFilter === 'project' && !['AppleDeveloperAcademy', '개발', '아카데미일상'].some(cat => category.includes(cat))) ||
+                                category.includes(currentFilter);
+            
+            const matchesSearch = currentSearch === '' || 
+                                title.includes(currentSearch) || 
+                                excerpt.includes(currentSearch);
+
+            if (matchesFilter && matchesSearch) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Sort visible cards
+        const visibleCards = cards.filter(card => card.style.display !== 'none');
+        const sortValue = sortSelect.value;
+
+        visibleCards.sort((a, b) => {
+            switch(sortValue) {
+                case 'newest':
+                    return b.dataset.date - a.dataset.date;
+                case 'oldest':
+                    return a.dataset.date - b.dataset.date;
+                case 'title':
+                    return a.dataset.title.localeCompare(b.dataset.title);
+                default:
+                    return 0;
+            }
+        });
+
+        // Reorder DOM
+        visibleCards.forEach(card => {
+            postsGrid.appendChild(card);
+        });
+
+        // Update counts
+        if (currentFilter !== 'all' || currentSearch !== '') {
+            filteredCountSpan.style.display = 'inline';
+            filteredCount.textContent = visibleCount;
+        } else {
+            filteredCountSpan.style.display = 'none';
+        }
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+            noResults.style.display = 'flex';
+            postsGrid.style.display = 'none';
+        } else {
+            noResults.style.display = 'none';
+            postsGrid.style.display = 'grid';
+        }
+    }
+});
+</script>

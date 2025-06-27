@@ -28,6 +28,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/code-copy.css' | relative_url }}">
+    {% if page.url == '/all-posts/' %}
+    <link rel="stylesheet" href="{{ '/assets/css/pagestyle/all-posts.css' | relative_url }}">
+    {% endif %}
 
     <!-- Analytics -->
     {% if site.google_analytics %}
@@ -55,6 +58,7 @@
                 <a href="{{ '/about' | relative_url }}" class="nav-link">소개</a>
                 <a href="{{ '/projects' | relative_url }}" class="nav-link">프로젝트</a>
                 <a href="{{ '/archive' | relative_url }}" class="nav-link">아카이브</a>
+                <a href="{{ '/all-posts' | relative_url }}" class="nav-link">전체 글</a>
                 <a href="{{ '/contact' | relative_url }}" class="nav-link">연락</a>
 
                 <!-- Dark mode toggle -->
@@ -92,6 +96,7 @@
                         <li><a href="{{ '/about' | relative_url }}">소개</a></li>
                         <li><a href="{{ '/projects' | relative_url }}">프로젝트</a></li>
                         <li><a href="{{ '/archive' | relative_url }}">아카이브</a></li>
+                        <li><a href="{{ '/all-posts' | relative_url }}">전체 글</a></li>
                     </ul>
                 </div>
 
