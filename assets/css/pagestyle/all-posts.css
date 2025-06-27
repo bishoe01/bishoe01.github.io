@@ -43,11 +43,11 @@
 
 .filter-container {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     align-items: center;
     flex-wrap: wrap;
     background: var(--bg-secondary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-color);
 }
@@ -57,13 +57,18 @@
     min-width: 200px;
 }
 
+.filter-group:last-child {
+    flex: 0 0 auto;
+    min-width: auto;
+}
+
 .search-box {
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-primary);
     transition: all var(--transition-fast);
 }
@@ -76,7 +81,7 @@
 
 .filter-buttons {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     flex-wrap: wrap;
 }
 
@@ -114,15 +119,22 @@
 }
 
 .sort-dropdown {
-    width: 100%;
     padding: var(--spacing-sm) var(--spacing-md);
+    padding-right: var(--spacing-xl);
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-primary);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-sm) center;
+    background-size: 16px;
+    min-width: 140px;
 }
 
 .sort-dropdown:focus {
@@ -342,11 +354,17 @@
     .filter-container {
         flex-direction: column;
         gap: var(--spacing-md);
+        padding: var(--spacing-md);
     }
     
     .filter-group {
         width: 100%;
         min-width: unset;
+    }
+    
+    .filter-group:last-child {
+        order: -1;
+        align-self: flex-end;
     }
     
     .filter-buttons {
