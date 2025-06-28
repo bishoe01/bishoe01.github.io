@@ -1,4 +1,164 @@
 
+/* ===== TABLE OF CONTENTS ===== */
+.toc-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2rem;
+    width: 280px;
+    max-height: 70vh;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-medium);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    transition: all var(--transition-medium);
+}
+
+.toc-container.show {
+    display: flex;
+}
+
+.toc-container.collapsed {
+    width: auto;
+    padding: var(--spacing-sm);
+}
+
+.toc-container.collapsed .toc-header h3,
+.toc-container.collapsed .toc-list,
+.toc-container.collapsed .toc-actions span {
+    display: none;
+}
+
+.toc-container.collapsed .toc-toggle i {
+    transform: rotate(180deg);
+}
+
+.toc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toc-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.toc-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    transition: all var(--transition-fast);
+}
+
+.toc-toggle:hover {
+    color: var(--primary-color);
+}
+
+.toc-toggle i {
+    transition: transform var(--transition-medium);
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.toc-list li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.toc-list a {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.toc-list a:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+    padding-left: var(--spacing-md);
+}
+
+.toc-list a.active {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    color: var(--primary-color);
+    font-weight: 600;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Nested headings */
+.toc-list .toc-h3 {
+    padding-left: var(--spacing-lg);
+    font-size: 0.813rem;
+}
+
+.toc-list .toc-h4 {
+    padding-left: calc(var(--spacing-lg) * 1.5);
+    font-size: 0.75rem;
+}
+
+.toc-actions {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.toc-action-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.toc-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Hide TOC on smaller screens */
+@media (max-width: 1400px) {
+    .toc-container {
+        right: 1rem;
+        width: 250px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .toc-container {
+        display: none !important;
+    }
+}
+
 /* ===== POSTS GRID ===== */
 .posts-section {
     margin-bottom: var(--spacing-2xl);

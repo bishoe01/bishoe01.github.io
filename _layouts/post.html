@@ -70,6 +70,23 @@ layout: default
 
     </header>
 
+    <!-- Table of Contents for larger screens -->
+    <nav class="toc-container" id="toc-container">
+        <div class="toc-header">
+            <h3>목차</h3>
+            <button class="toc-toggle" id="toc-toggle" aria-label="목차 토글">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="toc-list" id="toc-list"></ul>
+        <div class="toc-actions">
+            <button class="toc-action-btn" id="scroll-to-comments" title="댓글로 이동">
+                <i class="fas fa-comments"></i>
+                <span>댓글</span>
+            </button>
+        </div>
+    </nav>
+
     <div class="post-content">
         {{ content }}
     </div>
@@ -316,3 +333,128 @@ layout: default
         </div>
     </div>
 </section>
+
+<!-- Table of Contents Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // TOC 생성 및 제어
+    const tocContainer = document.getElementById('toc-container');
+    const tocList = document.getElementById('toc-list');
+    const tocToggle = document.getElementById('toc-toggle');
+    const scrollToCommentsBtn = document.getElementById('scroll-to-comments');
+    const postContent = document.querySelector('.post-content');
+    
+    // 화면 크기 체크
+    if (window.innerWidth > 1200 && postContent) {
+        // 제목 태그 찾기
+        const headings = postContent.querySelectorAll('h2, h3, h4');
+        
+        if (headings.length > 0) {
+            tocContainer.classList.add('show');
+            
+            // TOC 목록 생성
+            headings.forEach((heading, index) => {
+                // ID 생성 (없으면)
+                if (!heading.id) {
+                    heading.id = 'heading-' + index;
+                }
+                
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + heading.id;
+                a.textContent = heading.textContent;
+                a.className = 'toc-' + heading.tagName.toLowerCase();
+                
+                // 부드러운 스크롤
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.getElementById(heading.id);
+                    if (target) {
+                        const offset = target.offsetTop - 100;
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+            
+            // 스크롤 시 현재 위치 하이라이트
+            let currentActiveLink = null;
+            
+            function highlightCurrentSection() {
+                const scrollPosition = window.scrollY + 150;
+                
+                headings.forEach((heading) => {
+                    const headingTop = heading.offsetTop;
+                    const headingBottom = headingTop + heading.offsetHeight;
+                    
+                    if (scrollPosition >= headingTop && scrollPosition <= headingBottom + 100) {
+                        const correspondingLink = tocList.querySelector(`a[href="#${heading.id}"]`);
+                        
+                        if (currentActiveLink) {
+                            currentActiveLink.classList.remove('active');
+                        }
+                        
+                        if (correspondingLink) {
+                            correspondingLink.classList.add('active');
+                            currentActiveLink = correspondingLink;
+                        }
+                    }
+                });
+            }
+            
+            // 스크롤 이벤트 리스너 (throttle 적용)
+            let ticking = false;
+            function scrollHandler() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        highlightCurrentSection();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', scrollHandler);
+            
+            // 초기 하이라이트
+            highlightCurrentSection();
+        }
+    }
+    
+    // TOC 토글 기능
+    if (tocToggle) {
+        tocToggle.addEventListener('click', function() {
+            tocContainer.classList.toggle('collapsed');
+            
+            // 상태 저장
+            const isCollapsed = tocContainer.classList.contains('collapsed');
+            localStorage.setItem('tocCollapsed', isCollapsed);
+        });
+        
+        // 저장된 상태 복원
+        const savedState = localStorage.getItem('tocCollapsed');
+        if (savedState === 'true') {
+            tocContainer.classList.add('collapsed');
+        }
+    }
+    
+    // 댓글로 스크롤
+    if (scrollToCommentsBtn) {
+        scrollToCommentsBtn.addEventListener('click', function() {
+            const commentsSection = document.querySelector('.comments-section');
+            if (commentsSection) {
+                const offset = commentsSection.offsetTop - 80;
+                window.scrollTo({
+                    top: offset,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+});
+</script>
