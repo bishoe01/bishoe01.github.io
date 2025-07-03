@@ -71,19 +71,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 복사 성공 피드백
     function showCopySuccess(button) {
-        const originalHTML = button.innerHTML;
-        button.classList.add('copied');
-        button.innerHTML = `
-            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20,6 9,17 4,12"></polyline>
-            </svg>
-            <span class="copy-text">복사됨!</span>
-        `;
+        // 알림창 생성
+        const notification = document.createElement('div');
+        notification.className = 'copy-notification';
+        notification.textContent = '코드가 클립보드에 복사되었습니다!';
+        document.body.appendChild(notification);
 
-        setTimeout(function() {
-            button.classList.remove('copied');
-            button.innerHTML = originalHTML;
-        }, 1200);
+        // 알림창 보이기
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10); // 약간의 딜레이를 주어 CSS transition이 적용되도록 함
+
+        // 일정 시간 후 알림창 숨기기 및 제거
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300); // transition이 끝난 후 제거
+        }, 2000); // 2초 후 사라짐
     }
 
     // fallback 복사 방법 (구형 브라우저용)

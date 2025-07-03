@@ -22,29 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    
-    if (currentTheme === 'dark') {
-        body.setAttribute('data-theme', 'dark');
-        if (themeToggle) {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-    }
+    const docEl = document.documentElement;
 
     // Theme toggle event listener
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
-            const currentTheme = body.getAttribute('data-theme');
+            const currentTheme = docEl.getAttribute('data-theme');
             
             if (currentTheme === 'dark') {
-                body.setAttribute('data-theme', 'light');
+                docEl.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             } else {
-                body.setAttribute('data-theme', 'dark');
+                docEl.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
