@@ -25,17 +25,22 @@ permalink: /archive/
         <i class="fas fa-calendar-day"></i>
         <span class="tab-text">아카데미일상</span>
       </button>
+      <button class="archive-tab-button" data-category="swiftui" data-label="SwiftUI">
+        <i class="fas fa-paint-brush"></i>
+        <span class="tab-text">SwiftUI</span>
+      </button>
     </div>
   </div>
 
   <!-- Archive Content Areas -->
   <div class="archive-content">
     <!-- Professional Categories Only -->
-    {% assign professional_categories = "AppleDeveloperAcademy,개발,아카데미일상" | split: "," %}
+    {% assign professional_categories = "AppleDeveloperAcademy,개발,아카데미일상,SwiftUI" | split: "," %}
     {% assign professional_posts = site.posts | where_exp: 'post', 'professional_categories contains post.categories[0]' %}
     {% assign apple_posts = professional_posts | where_exp: 'post', 'post.categories contains "AppleDeveloperAcademy"' %}
     {% assign dev_posts = professional_posts | where_exp: 'post', 'post.categories contains "개발"' %}
     {% assign academy_daily_posts = professional_posts | where_exp: 'post', 'post.categories contains "아카데미일상"' %}
+    {% assign swiftui_posts = site.posts | where_exp: 'post', 'post.categories contains "SwiftUI"' %}
 
     <!-- All Posts View -->
     <div class="archive-tab-content active" data-category="all">
@@ -162,6 +167,46 @@ permalink: /archive/
           </div>
         </div>
         {% endif %}
+        
+        <!-- SwiftUI Series -->
+        {% if swiftui_posts.size > 0 %}
+        <div class="series-card">
+          <div class="series-header">
+            <div class="series-header-content">
+              <h2 class="series-title">SwiftUI</h2>
+              <div class="series-icon">🦅</div>
+            </div>
+            <div class="series-info">  
+              <p class="series-description">SwiftUI 프로젝트개발 관련 DeepDive</p>
+              <div class="series-stats">
+                <span class="date-range">{{ swiftui_posts.last.date | date: "%Y.%m" }} - {{ swiftui_posts.first.date | date: "%Y.%m" }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="recent-posts">
+            {% for post in swiftui_posts limit: 3 %}
+            <div class="post-preview">
+              <div class="post-meta">
+                <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
+                {% if post.tags.size > 0 %}
+                <span class="primary-tag"># {{ post.tags.first }}</span>
+                {% endif %}
+              </div>
+              <h4 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title | truncatewords: 8 }}</a>
+              </h4>
+            </div>
+            {% endfor %}
+          </div>
+          
+          <div class="series-footer">
+            <a href="/archive/swiftui/" class="view-all-btn">
+              전체 보기 ({{ swiftui_posts.size }}개) →
+            </a>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
 
@@ -217,6 +262,30 @@ permalink: /archive/
     <div class="archive-tab-content" data-category="academy-daily">
       <div class="posts-timeline">
         {% for post in academy_daily_posts %}
+        <div class="timeline-post">
+          <div class="timeline-date">
+            <time>{{ post.date | date: "%Y.%m.%d" }}</time>
+          </div>
+          <div class="timeline-content">
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            {% if post.tags.size > 0 %}
+            <div class="post-tags">
+              {% for tag in post.tags limit: 3 %}
+              <span class="tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- SwiftUI Posts -->
+    <div class="archive-tab-content" data-category="swiftui">
+      <div class="posts-timeline">
+        {% for post in swiftui_posts %}
         <div class="timeline-post">
           <div class="timeline-date">
             <time>{{ post.date | date: "%Y.%m.%d" }}</time>
