@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "SwiftUI 🎨"
+title: "SwiftUI 🦅"
 description: "SwiftUI관련 프로젝트 경험들을 공유합니다."
 permalink: /archive/swiftui/
 ---
@@ -11,7 +11,7 @@ permalink: /archive/swiftui/
     </div>
     
     <div class="series-hero">
-        <div class="hero-icon">🎨</div>
+        <div class="hero-icon">🦅</div>
         <div class="hero-content">
             <h1>SwiftUI</h1>
             <p class="hero-description">

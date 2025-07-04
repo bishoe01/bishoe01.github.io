@@ -184,7 +184,7 @@ layout: default
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
-                                    replace: ']', '' | truncate: 40 }}</span>
+                                    replace: ']', '' | truncate: 60 }}</span>
                                 <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
                             </a>
                         </div>
@@ -217,7 +217,7 @@ layout: default
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
-                                    replace: ']', '' | truncate: 40 }}</span>
+                                    replace: ']', '' | truncate: 60 }}</span>
                                 <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
                             </a>
                         </div>
@@ -250,7 +250,7 @@ layout: default
                         <div class="preview-item">
                             <a href="{{ post.url | relative_url }}" class="preview-link">
                                 <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
-                                    replace: ']', '' | truncate: 40 }}</span>
+                                    replace: ']', '' | truncate: 60 }}</span>
                                 <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
                             </a>
                         </div>
@@ -259,6 +259,39 @@ layout: default
 
                     <div class="series-footer">
                         <a href="/archive/?category=academy-daily" class="series-view-all">
+                            전체 보기 <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- 4️⃣ SwiftUI 시리즈 -->
+                {% assign category_name = 'SwiftUI' %}
+                {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_name' %}
+                {% if category_posts.size > 0 %}
+                <div class="series-card">
+                    <div class="series-header-showcase">
+                        <div class="series-icon-showcase">🦅</div>
+                        <div class="series-info">
+                            <h3 class="series-title-showcase">SwiftUI</h3>
+                            <p class="series-count">{{ category_posts.size }}개의 글</p>
+                        </div>
+                    </div>
+
+                    <div class="series-preview">
+                        {% for post in category_posts limit: 3 %}
+                        <div class="preview-item">
+                            <a href="{{ post.url | relative_url }}" class="preview-link">
+                                <span class="preview-title">{{ post.title | replace: '"', '' | replace: '[', '' |
+                                    replace: ']', '' | truncate: 60 }}</span>
+                                <span class="preview-date">{{ post.date | date: "%m/%d" }}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="series-footer">
+                        <a href="/archive/?category=swiftui" class="series-view-all">
                             전체 보기 <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
