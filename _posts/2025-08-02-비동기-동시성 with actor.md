@@ -75,7 +75,7 @@ func loadData() async {
 
 Swift는 어떤 작업(Task)이 먼저 실행될지 보장해주지 않는다.
 특히 `Task`를 여러 개 사용해서 동시에 요청을 날리는 경우,
-어떤 Task가 먼저 실행되고, 어떤 Task가 나중에 실행될지는 **스케줄러의 결정에 따라 달라진다.** (직렬화 해준다고 알려져있는데, 이는 다음에 더 자세히 다뤄보도록 하겠다..!)
+어떤 Task가 먼저 실행되고, 어떤 Task가 나중에 실행될지는 **스케줄러의 결정에 따라 달라진다.** 
 
 ---
 
@@ -126,6 +126,59 @@ actor Counter {
 
 ---
 
+### Actor Isolation
+
+Actor isolation은 actor가 어떻게 안정성을 보장하는지에 대한 매커니즘이다.
+각 actor는 **고유한 isolation domain**을 가지며, actor 내부의 모든 프로퍼티와 메서드가 **동시에 하나의 Task만** 접근할 수 있게 설계되어있다. 
+
+> Actor isolation은 컴파일 타임에 검증되기 때문에, data race를 원천적으로 차단한다.
+
+#### let vs var의 차이
+
+actor 내부에서 `let`과 `var`는 다르게 동작한다.
+
+- let일때는 외부접근하더라도 await가 필요가 없겠지만, var일때는 self일때만 await가 요구되지않고, 
+
+```swift
+actor BankAccount {
+    let accountNumber = "123456"  // 불변값 - 동기적 접근 가능
+    var balance = 1000            // 가변값 - 비동기적 접근 필요
+}
+
+// actor 외부에서 인스턴스에 접근할 때
+let account = BankAccount()
+print(account.accountNumber)     // await 없이 접근 가능
+print(await account.balance)     // await 필요
+```
+
+`let`으로 선언된 상수는 **변경될 가능성이 없으므로** 동기적으로 접근 가능하다.
+반면 `var`로 선언된 변수는 **언제든 변경될 수 있으므로** actor의 isolation을 통해야 한다.
+
+#### Cross-Actor Reference
+
+다른 actor의 메서드나 프로퍼티에 접근할 때는 **cross-actor reference**가 발생한다
+
+```swift
+actor 로그찍어주는액터 {
+    func log(_ message: String) {
+        print(message)
+    }
+}
+
+actor DataProcessor {
+    func processData() async {
+        let 로그액터 = 로그찍어주는액터()
+        // 다른 actor에서부터 호출할때는 비동기로 접근을 해야한다..!  -> await 필요!
+        await 로그액터.log("Processing started")
+    }
+}
+```
+
+이런 cross-actor 호출은 Swift 컴파일러가 자동으로 감지하고, 
+`await`를 요구함으로써 **데이터 레이스를 컴파일 타임에 방지**한다.
+
+---
+
 ### actor 활용
 
 ```swift
@@ -140,10 +193,43 @@ Task {
 
 `Counter`는 내부적으로 **고유한 Serial Executor**를 가진다.
 여러 Task가 동시에 `increase()`를 호출해도 Swift는 이 요청들을 한 줄로 직렬화시켜서 **한 번에 하나씩만 실행**시키는 것이다.
+이렇게하면 순차적 실행이기때문에,  `value` 값이 꼬이는 불상사는 없다.
 
-→ 덕분에 `value` 값이 꼬이지 않는 것이다. 
+그리고 actor 내부 속성이나 메서드에 접근할 때 `await`를 붙여야 하는 이유도 이 때문이다. Swift가 해당 작업을 직렬 큐에 등록하고 **순차적으로 실행**할 수 있도록 보장하는 구조인 것!
 
-그리고 actor 내부 속성이나 메서드에 접근할 때 `await`를 붙여야 하는 이유도 이 때문이다. Swift가 해당 작업을 직렬 큐에 등록하고 **순차적으로 실행**할 수 있도록 보장하는 구조인 것! 
+#### Isolation 동작 원리
+
+Actor isolation은 다음과 같은 과정으로 동작한다:
+
+1. **컴파일 타임 검증**: Swift 컴파일러가 actor 경계를 넘는 모든 접근을 추적
+2. **비동기 전환**: actor 외부에서의 접근은 자동으로 비동기 호출로 변환
+3. **직렬화 보장**: Actor의 executor가 모든 작업을 순차적으로 처리
+
+```swift
+actor Counter {
+    private var count = 0
+    
+    func increment() {
+        count += 1  // actor 내부에서는 동기적 접근이 가능하다. await없어도됨 ! 
+    }
+    
+    func getValue() -> Int {
+        return count
+    }
+}
+
+// 사용 예시
+let counter = Counter()
+
+// 여러 곳에서 동시에 접근해도 안전
+Task {
+    await counter.increment()
+}
+Task {
+    await counter.increment()
+}
+print(await counter.getValue())  // 순차적으로 실행되어 안전하다! 
+``` 
 
 ---
 
@@ -167,12 +253,9 @@ actor를 사용하면 직접 락이나 동기화 코드를 작성하지 않아�
 
 ---
 
-### 그러면 무조건 상위호환 아닙니까?! actor는 무조건 좋은 걸까?
+### 그러면 무조건 클래스 상위호환 아닙니까?! actor는 무조건 좋은 걸까?
 
-꼭 그렇진 않다. actor는 내부 상태를 안전하게 보호하는 대신 모든 작업을 **직렬화해서 하나씩 실행**하기 때문에 **성능이 저하될 수 있다.**
-
-특히 actor 내부에서 오래 걸리는 작업이 있을 경우,
-다음 작업이 **기다려야 하므로 전체 처리 흐름이 느려질 수 있다.**
+꼭 그렇진 않다. actor는 내부 상태를 안전하게 보호하는 대신 모든 작업을 **직렬화해서 하나씩 실행**하기 때문에 **성능이 저하될 수 있다.** 특히 actor 내부에서 오래 걸리는 작업이 있을 경우, 다음 작업을 기다려야되니따 전체 처리 흐름이 느려질 수 있다.
 
 ---
 
